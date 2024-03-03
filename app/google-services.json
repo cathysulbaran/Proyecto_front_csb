@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "922245441032",
+    "project_id": "proyectofindegrado-a6624",
+    "storage_bucket": "proyectofindegrado-a6624.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922245441032:android:a61116d817bdff90d813bd",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_front_csb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDo6GYdiO3aWfwIyJojxPIu0APr6psymQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
