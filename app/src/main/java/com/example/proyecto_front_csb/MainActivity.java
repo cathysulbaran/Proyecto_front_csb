@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button btIniciarRegistro, btIniciarConsulta, btIniciarVentas, btIniciarInforme;
@@ -21,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         btIniciarConsulta = findViewById(R.id.btConsulta);
         btIniciarVentas = findViewById(R.id.btVentas);
         btIniciarInforme = findViewById(R.id.btInformes);
+
 
 
 
