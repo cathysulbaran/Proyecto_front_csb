@@ -1,11 +1,13 @@
 package com.example.proyecto_front_csb.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.proyecto_front_csb.DetallesArticulo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -93,18 +95,18 @@ public class DataBase {
                                 precioTextView.setText(precio);
                                 stockTextView.setText(unidades);
                                 fechaTextView.setText(fecha);
-                            }else {
-
                             }
                         }else {
-
+                            Toast.makeText(context, "Error al visualizar el producto", Toast.LENGTH_SHORT).show();
                         }
                     }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Error al visualizar el producto", Toast.LENGTH_SHORT).show();
+                    }
                 });
-    }
-
-    public void filtrarProductos(Context context, Productos producto){
-
     }
 
 
