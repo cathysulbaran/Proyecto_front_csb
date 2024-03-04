@@ -7,9 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.proyecto_front_csb.model.DataBase;
-import com.example.proyecto_front_csb.model.Productos;
-import com.example.proyecto_front_csb.model.Usuarios;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         btIniciarConsulta = findViewById(R.id.btConsulta);
         btIniciarVentas = findViewById(R.id.btVentas);
         btIniciarInforme = findViewById(R.id.btInformes);
+
+
+
 
         btIniciarRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
