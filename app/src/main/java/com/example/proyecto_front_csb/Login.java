@@ -30,6 +30,7 @@ public class Login extends AppCompatActivity {
         });
 
     }
+    //no tiene la verificacion de usuario
     public void Iniciar_Main(){
 
         Intent intent = new Intent(this, MainActivity.class);
