@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         btIniciarVentas = findViewById(R.id.btVentas);
         btIniciarInforme = findViewById(R.id.btInformes);
 
-
+        
 
 
         btIniciarRegistro.setOnClickListener(new View.OnClickListener() {
