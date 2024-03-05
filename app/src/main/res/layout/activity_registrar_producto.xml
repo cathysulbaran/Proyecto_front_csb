@@ -54,6 +54,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         android:inputType="number"
+        android:maxLength="13"
         />
 
     <EditText
@@ -258,7 +259,7 @@
         android:layout_width="369dp"
         android:layout_height="43dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/guideline24"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.0"

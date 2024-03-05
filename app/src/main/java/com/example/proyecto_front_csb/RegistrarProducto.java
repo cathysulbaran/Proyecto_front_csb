@@ -3,6 +3,9 @@ package com.example.proyecto_front_csb;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
@@ -71,6 +74,33 @@ public class RegistrarProducto extends AppCompatActivity {
             return;
         }
 
+        // Verificar si la fecha tiene un formato válido
+        if (!entradaMercancia.matches("\\d{2}/\\d{2}/\\d{4}")) {
+            Toast.makeText(RegistrarProducto.this, "Formato de fecha incorrecto. Utilice el formato dd/MM/yyyy", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+            // Extraer el día, mes y año de la fecha
+        String[] partesFecha = entradaMercancia.split("/");
+        int dia = Integer.parseInt(partesFecha[0]);
+        int mes = Integer.parseInt(partesFecha[1]);
+        int anio = Integer.parseInt(partesFecha[2]);
+
+            // Verificar si el mes es válido (de 1 a 12)
+        if (mes < 1 || mes > 12) {
+            Toast.makeText(RegistrarProducto.this, "El mes ingresado no es válido", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+            // Verificar si el día es válido para el mes ingresado
+        int diasEnMes = obtenerDiasEnMes(mes, anio);
+        if (dia < 1 || dia > diasEnMes) {
+            Toast.makeText(RegistrarProducto.this, "El día ingresado no es válido para el mes seleccionado", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+
         // Crear un objeto Producto con los datos obtenidos
         Productos producto = new Productos(ean, nombre, fichaTecnica, marca, precio, unidades, entradaMercancia);
 
@@ -82,6 +112,38 @@ public class RegistrarProducto extends AppCompatActivity {
                         Toast.makeText(RegistrarProducto.this, "Producto guardado correctamente", Toast.LENGTH_SHORT).show();
                         // Limpiar los campos después de guardar el producto
                         limpiarCampos();
+
+                        // Crear un cuadro de diálogo de confirmación
+                        AlertDialog.Builder builder = new AlertDialog.Builder(RegistrarProducto.this);
+                        builder.setTitle("Producto registrado correctamente");
+                        builder.setMessage("Resumen:\n" +
+                                "- Ean: " + ean + "\n" +
+                                "- Nombre: " + nombre + "\n" +
+                                "- Cantidad: " + unidades + "\n" +
+                                "\n¿Quiere registrar otro producto?");
+
+                        // Agregar botones al cuadro de diálogo
+                        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Si el usuario elige registrar otro producto, no se hace nada
+                                dialog.dismiss(); // Cerrar el cuadro de diálogo
+                            }
+                        });
+
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Si el usuario elige no registrar otro producto, volver al menú principal
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Limpiar la pila de actividades
+                                startActivity(intent);
+                                finish(); // Finalizar la actividad actual
+                            }
+                        });
+
+                    // Mostrar el cuadro de diálogo
+                        builder.show();
                     } else {
                         Toast.makeText(RegistrarProducto.this, "Error al guardar el producto", Toast.LENGTH_SHORT).show();
                     }
@@ -97,4 +159,19 @@ public class RegistrarProducto extends AppCompatActivity {
         edt_fichaTenica.setText("");
         edt_precio.setText("");
     }
+
+    // Función para obtener el número de días en un mes específico
+    private int obtenerDiasEnMes(int mes, int anio) {
+        int[] diasEnMes = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        if (mes == 2 && esBisiesto(anio)) {
+            return 29; // Febrero en año bisiesto
+        }
+        return diasEnMes[mes - 1];
+    }
+
+    // Función para verificar si un año es bisiesto
+    private boolean esBisiesto(int anio) {
+        return (anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0);
+    }
+
 }

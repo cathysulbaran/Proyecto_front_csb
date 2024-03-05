@@ -12,49 +12,24 @@
         android:id="@+id/btRegistro"
         android:layout_width="127dp"
         android:layout_height="66dp"
-        android:layout_marginStart="28dp"
-        android:text="Registrar Producto"
         android:backgroundTint="#93BDBF"
-        app:layout_constraintBottom_toTopOf="@+id/guideline22"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        android:text="Registrar Producto"
+        app:layout_constraintBottom_toTopOf="@+id/guideline20"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btConsulta"
-        android:layout_width="117dp"
-        android:layout_height="65dp"
+        android:layout_width="127dp"
+        android:layout_height="66dp"
         android:backgroundTint="#93BDBF"
         android:text="Consulta Articulo"
-        app:layout_constraintBottom_toTopOf="@+id/guideline22"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btVentas"
-        android:layout_width="125dp"
-        android:layout_height="69dp"
-        android:backgroundTint="#64A2AD"
-        android:text="Ventas"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline22"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btInformes"
-        android:layout_width="120dp"
-        android:layout_height="69dp"
-        android:text="Informes"
-        android:backgroundTint="#64A2AD"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline22"
+        app:layout_constraintTop_toTopOf="@+id/guideline20"
         tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -71,20 +46,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.8" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
-
     <TextView
         android:id="@+id/textView11"
         android:layout_width="0dp"
@@ -97,5 +58,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50752395" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

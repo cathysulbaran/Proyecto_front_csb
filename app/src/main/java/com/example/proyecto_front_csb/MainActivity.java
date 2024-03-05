@@ -24,8 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
         btIniciarRegistro = findViewById(R.id.btRegistro);
         btIniciarConsulta = findViewById(R.id.btConsulta);
-        btIniciarVentas = findViewById(R.id.btVentas);
-        btIniciarInforme = findViewById(R.id.btInformes);
 
 
 
@@ -44,33 +42,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btIniciarVentas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Iniciar_Ventas();
-            }
-        });
 
-        btIniciarInforme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Iniciar_Informes();
-            }
-        });
 
 
     }
-    public void Iniciar_Informes(){
 
-        Intent intent = new Intent(this, ListadoProductos.class);
-        startActivity(intent);
-    }
-
-    public void Iniciar_Ventas(){
-
-        Intent intent = new Intent(this, Ventas.class);
-        startActivity(intent);
-    }
 
     public void Iniciar_RegistrarProducto(){
 
