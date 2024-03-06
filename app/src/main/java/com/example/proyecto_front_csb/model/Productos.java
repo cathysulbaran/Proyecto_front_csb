@@ -24,8 +24,6 @@ public class Productos {
     private int unidades;
     private String entradaMercancia;
 
-    private FirebaseFirestore db;
-
     public Productos(String  ean, String nombre, String fichaTecnica, String marca, double precio, int unidades, String entradaMercancia) {
         this.ean = ean;
         this.nombre = nombre;
@@ -34,11 +32,6 @@ public class Productos {
         this.precio = precio;
         this.unidades = unidades;
         this.entradaMercancia = entradaMercancia;
-        db = FirebaseFirestore.getInstance();
-    }
-
-    public Productos(){
-        db = FirebaseFirestore.getInstance();
     }
     public String getEan() {
         return ean;

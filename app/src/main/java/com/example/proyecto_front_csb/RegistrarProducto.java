@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.proyecto_front_csb.model.Productos;
+import com.example.proyecto_front_csb.model.DataBase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
@@ -103,51 +104,8 @@ public class RegistrarProducto extends AppCompatActivity {
 
         // Crear un objeto Producto con los datos obtenidos
         Productos producto = new Productos(ean, nombre, fichaTecnica, marca, precio, unidades, entradaMercancia);
-
-        // Guardar el producto en Firestore
-        db.collection("Productos")
-                .add(producto)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(RegistrarProducto.this, "Producto guardado correctamente", Toast.LENGTH_SHORT).show();
-                        // Limpiar los campos después de guardar el producto
-                        limpiarCampos();
-
-                        // Crear un cuadro de diálogo de confirmación
-                        AlertDialog.Builder builder = new AlertDialog.Builder(RegistrarProducto.this);
-                        builder.setTitle("Producto registrado correctamente");
-                        builder.setMessage("Resumen:\n" +
-                                "- Ean: " + ean + "\n" +
-                                "- Nombre: " + nombre + "\n" +
-                                "- Cantidad: " + unidades + "\n" +
-                                "\n¿Quiere registrar otro producto?");
-
-                        // Agregar botones al cuadro de diálogo
-                        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Si el usuario elige registrar otro producto, no se hace nada
-                                dialog.dismiss(); // Cerrar el cuadro de diálogo
-                            }
-                        });
-
-                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Si el usuario elige no registrar otro producto, volver al menú principal
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Limpiar la pila de actividades
-                                startActivity(intent);
-                                finish(); // Finalizar la actividad actual
-                            }
-                        });
-
-                    // Mostrar el cuadro de diálogo
-                        builder.show();
-                    } else {
-                        Toast.makeText(RegistrarProducto.this, "Error al guardar el producto", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        DataBase db = new DataBase();
+        db.insertarProductos(this, producto);
     }
 
     private void limpiarCampos() {
