@@ -54,8 +54,12 @@ public class ConsultaArticulo extends AppCompatActivity {
         DataBase db2 = new DataBase();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String ean = edtEANConsulta.getText().toString();
-        db.collection("Productos").document(ean).get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        if (ean.length() !=13) {
+            Toast.makeText(ConsultaArticulo.this, "El EAN debe tener exactamente 13 caracteres", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        db.collection("Productos").document(ean).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if(task.isSuccessful()){
@@ -66,16 +70,12 @@ public class ConsultaArticulo extends AppCompatActivity {
                                 TextView textNombre = findViewById(R.id.textNombreValor);
                                 TextView textMarca = findViewById(R.id.textMarcaValor);
                                 TextView textPrecio = findViewById(R.id.textPrecioValor);
+                                TextView textFichaTecnica = findViewById(R.id.textFichaTecnicaValor);
                                 TextView textStockDisponibleValor = findViewById(R.id.textStockDisponibleValor);
                                 TextView textFechaEntradaValor = findViewById(R.id.textFechaEntradaValor);
 
-                                db2.leerProductosPorEan(ConsultaArticulo.this, ean, textEan, textNombre,textMarca,textPrecio,textStockDisponibleValor,textFechaEntradaValor);
-                                /*
-                                Intent intent = new Intent(ConsultaArticulo.this, DetallesArticulo.class);
-                                intent.putExtra("ean",edtEANConsulta.getText().toString());
-                                startActivity(intent);
+                                db2.leerProductosPorEan(ConsultaArticulo.this, ean, textEan, textNombre,textMarca,textPrecio,textFichaTecnica, textStockDisponibleValor,textFechaEntradaValor);
 
-                                 */
                             }else{
                                 Toast.makeText(ConsultaArticulo.this, "El ean introducido no es valido", Toast.LENGTH_SHORT).show();
                             }

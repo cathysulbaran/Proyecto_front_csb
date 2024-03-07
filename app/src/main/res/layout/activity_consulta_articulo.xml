@@ -45,14 +45,15 @@
             android:layout_marginTop="20dp"
             android:padding="10dp"
             android:textSize="15sp"
-            android:inputType="text"
+            android:inputType="number"
+            android:maxLength="13"
             />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="30dp"
             android:gravity="center_horizontal">
                 <Button
                 android:id="@+id/btBuscar"
@@ -79,10 +80,19 @@
         android:visibility="invisible"
         android:layout_below="@id/linearEAN"
         android:padding="10dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:layout_width="409dp"
         android:layout_height="406dp">
+
+        <TextView
+            android:id="@+id/tituloDetalles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="26sp"
+            android:padding="5dp"
+            android:textStyle="italic|bold"
+            android:text="Descripcion: " />
 
         <TableRow>
 
@@ -90,24 +100,26 @@
                 android:id="@+id/textEan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:text="EAN:"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textEanValor"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </TableRow>
 
         <TableRow>
 
+
             <TextView
                 android:id="@+id/textNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:textSize="20dp"
                 android:text="Nombre:"
                 android:textStyle="bold" />
 
@@ -115,7 +127,8 @@
                 android:id="@+id/textNombreValor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:textSize="20dp"
                 />
         </TableRow>
 
@@ -127,14 +140,16 @@
                 android:layout_height="wrap_content"
                 android:text="Marca:"
                 android:textStyle="bold"
-                android:textSize="15dp"
+                android:textSize="20dp"
+                android:layout_marginTop="5dp"
                 />
 
             <TextView
                 android:id="@+id/textMarcaValor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="20dp"
+                android:layout_marginTop="5dp"
                 />
         </TableRow>
 
@@ -146,18 +161,22 @@
                 android:layout_height="wrap_content"
                 android:text="Precio:"
                 android:textStyle="bold"
-                android:textSize="15dp"
+                android:textSize="20dp"
+                android:layout_marginTop="5dp"
                 />
 
             <TextView
                 android:id="@+id/textPrecioValor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="20dp"
+                android:layout_marginTop="5dp"
                 />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textFichaTecnica"
@@ -165,16 +184,18 @@
                 android:layout_height="wrap_content"
                 android:text="Ficha Tecnica:"
                 android:textStyle="bold"
-                android:textSize="15dp"
-                />
+                android:textSize="20dp"
+                android:layout_marginTop="5dp"/>
 
             <TextView
                 android:id="@+id/textFichaTecnicaValor"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
-                />
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:layout_marginTop="5dp"/>
         </TableRow>
+
 
         <TableRow>
 
@@ -184,14 +205,17 @@
                 android:layout_height="wrap_content"
                 android:text="Stock Disponible:"
                 android:textStyle="bold"
-                android:textSize="15dp"
+                android:textSize="20dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginTop="5dp"
                 />
 
             <TextView
                 android:id="@+id/textStockDisponibleValor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="20dp"
+                android:layout_marginTop="5dp"
                 />
         </TableRow>
 
@@ -202,15 +226,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fecha de entrada:"
+                android:layout_marginEnd="3dp"
                 android:textStyle="bold"
-                android:textSize="15dp"
+                android:textSize="20dp"
+                android:layout_marginTop="5dp"
                 />
 
             <TextView
                 android:id="@+id/textFechaEntradaValor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="20dp"
+                android:layout_marginTop="5dp"
                 />
         </TableRow>
 

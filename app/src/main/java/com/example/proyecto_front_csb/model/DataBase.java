@@ -76,7 +76,7 @@ public class DataBase {
                         }
                     });
     }
-    public void leerProductosPorEan(Context context, String ean, final TextView eanTextView, final TextView nombreTextView, final TextView marcaTextView, final TextView precioTextView, final TextView stockTextView, final TextView fechaTextView){
+    public void leerProductosPorEan(Context context, String ean, final TextView eanTextView, final TextView nombreTextView, final TextView marcaTextView, final TextView precioTextView,final TextView FichaTecnicaTextView, final TextView stockTextView, final TextView fechaTextView){
         eanTextView.setText(ean);
         db.collection("Productos").document(ean).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -96,6 +96,7 @@ public class DataBase {
                                 nombreTextView.setText(nombre);
                                 marcaTextView.setText(marca);
                                 precioTextView.setText(precio);
+                                FichaTecnicaTextView.setText(fichaTecnica);
                                 stockTextView.setText(unidades);
                                 fechaTextView.setText(fecha);
                             }

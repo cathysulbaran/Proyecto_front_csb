@@ -18,7 +18,7 @@ public class DetallesArticulo extends AppCompatActivity {
         Intent intent = getIntent();
         String ean = intent.getStringExtra("ean");
         DataBase db = new DataBase();
-
+/*
         TextView textEan = findViewById(R.id.textEanValor);
         TextView textNombre = findViewById(R.id.textNombreValor);
         TextView textMarca = findViewById(R.id.textMarcaValor);
@@ -27,7 +27,7 @@ public class DetallesArticulo extends AppCompatActivity {
         TextView textFechaEntradaValor = findViewById(R.id.textFechaEntradaValor);
 
         db.leerProductosPorEan(this, ean, textEan, textNombre,textMarca,textPrecio,textStockDisponibleValor,textFechaEntradaValor);
-
+*/
 
     }
 }
