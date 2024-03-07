@@ -33,7 +33,7 @@ public class Login extends AppCompatActivity {
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Iniciar_Main();
+                Iniciar_MainSinUsuario();
             }
         });
 
@@ -52,7 +52,10 @@ public class Login extends AppCompatActivity {
                             }
                         }
                     });
-
-
+    }
+    //PARA PODER INICIAR SIN USUARIO
+    public void Iniciar_MainSinUsuario(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
