@@ -2,6 +2,7 @@ package com.example.proyecto_front_csb;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,9 +15,10 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btIniciarRegistro, btIniciarConsulta, btIniciarVentas, btIniciarInforme;
+    private Button btIniciarRegistro, btIniciarConsulta, btCerrarSesion, btIniciarInforme;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         btIniciarRegistro = findViewById(R.id.btRegistro);
         btIniciarConsulta = findViewById(R.id.btConsulta);
-
-
-
+        btCerrarSesion = findViewById(R.id.btCerrar);
 
         btIniciarRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,11 +42,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btCerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CerrarSesion();
+            }
+        });
+
 
 
 
     }
+    public void CerrarSesion(){
 
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+    }
 
     public void Iniciar_RegistrarProducto(){
 
