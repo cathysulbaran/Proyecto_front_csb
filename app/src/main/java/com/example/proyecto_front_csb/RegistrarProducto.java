@@ -107,6 +107,7 @@ public class RegistrarProducto extends AppCompatActivity {
         Productos producto = new Productos(ean, nombre, fichaTecnica, marca, precio, unidades, entradaMercancia);
         DataBase db = new DataBase();
         db.insertarProductos(this, producto);
+        limpiarCampos();
     }
 
     private void limpiarCampos() {
