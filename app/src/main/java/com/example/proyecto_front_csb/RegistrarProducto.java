@@ -8,6 +8,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -27,6 +29,8 @@ public class RegistrarProducto extends AppCompatActivity {
 
     private EditText edt_precio;
 
+    private Button bt_atras;
+
     private FirebaseFirestore db;
 
     @SuppressLint("MissingInflatedId")
@@ -43,8 +47,17 @@ public class RegistrarProducto extends AppCompatActivity {
         edt_fichaTenica = findViewById(R.id.edtFichaTecnica);
         edt_precio = findViewById(R.id.edtPrecio);
         db = FirebaseFirestore.getInstance();
+        bt_atras = findViewById(R.id.btVolver);
 
         findViewById(R.id.btRegistrar).setOnClickListener(v -> guardarProducto());
+
+        bt_atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegistrarProducto.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -106,6 +119,7 @@ public class RegistrarProducto extends AppCompatActivity {
         Productos producto = new Productos(ean, nombre, fichaTecnica, marca, precio, unidades, entradaMercancia);
         DataBase db = new DataBase();
         db.insertarProductos(this, producto);
+        limpiarCampos();
     }
 
     private void limpiarCampos() {
