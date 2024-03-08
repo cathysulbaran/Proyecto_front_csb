@@ -26,7 +26,7 @@ public class DetallesArticulo extends AppCompatActivity {
         TextView textStockDisponibleValor = findViewById(R.id.textStockDisponibleValor);
         TextView textFechaEntradaValor = findViewById(R.id.textFechaEntradaValor);
 
-        db.leerProductosPorEan(this, ean, textEan, textNombre,textMarca,textPrecio,textStockDisponibleValor,textFechaEntradaValor);
+        //db.leerProductosPorEan(this, ean, textEan, textNombre,textMarca,textPrecio,textStockDisponibleValor,textFechaEntradaValor);
 
 
     }

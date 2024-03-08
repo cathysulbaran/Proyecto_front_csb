@@ -31,9 +31,6 @@
             android:name=".ListadoProductos"
             android:exported="false" />
         <activity
-            android:name=".Ventas"
-            android:exported="false" />
-        <activity
             android:name=".DetallesArticulo"
             android:exported="false" />
         <activity
@@ -47,6 +44,15 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".EliminarModificar"
+            android:exported="false"/>
+        <activity
+            android:name=".detallesEliminarModificar"
+            android:exported="false"/>
+        <activity
+            android:name=".registro"
             android:exported="false">
 
         </activity>

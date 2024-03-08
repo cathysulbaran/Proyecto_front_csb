@@ -45,6 +45,7 @@ public class RegistrarProducto extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         findViewById(R.id.btRegistrar).setOnClickListener(v -> guardarProducto());
+        findViewById(R.id.btVolver).setOnClickListener(v -> volver());
 
     }
 
@@ -130,6 +131,11 @@ public class RegistrarProducto extends AppCompatActivity {
     // Función para verificar si un año es bisiesto
     private boolean esBisiesto(int anio) {
         return (anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0);
+    }
+
+    private void volver(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 }
