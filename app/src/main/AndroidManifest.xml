@@ -52,7 +52,7 @@
             android:name=".detallesEliminarModificar"
             android:exported="false"/>
         <activity
-            android:name=".registro"
+            android:name=".Registro"
             android:exported="false">
 
         </activity>

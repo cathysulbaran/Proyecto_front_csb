@@ -3,7 +3,6 @@ package com.example.proyecto_front_csb;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -45,7 +44,7 @@ public class Login extends AppCompatActivity {
         tv_registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this, registro.class);
+                Intent intent = new Intent(Login.this, Registro.class);
                 startActivity(intent);
             }
         });

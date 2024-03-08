@@ -75,10 +75,15 @@
 
     </LinearLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearEAN"
+        >
+
     <TableLayout
         android:id="@+id/TableArticulos"
         android:visibility="invisible"
-        android:layout_below="@id/linearEAN"
         android:padding="10dp"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
@@ -243,6 +248,6 @@
 
     </TableLayout>
 
-
+    </ScrollView>
 
 </RelativeLayout>

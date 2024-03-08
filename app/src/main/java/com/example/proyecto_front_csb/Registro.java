@@ -16,7 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class registro extends AppCompatActivity {
+public class Registro extends AppCompatActivity {
 
     private EditText edt_username;
     private EditText edt_contrasena;
@@ -50,10 +50,10 @@ public class registro extends AppCompatActivity {
 
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(correo)) {
             // Message if fields are empty
-            Toast.makeText(registro.this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Registro.this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
         } else if (password.length() < 6) {
             // Message if password is less than 6 characters
-            Toast.makeText(registro.this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Registro.this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show();
         } else {
             // Create user with FirebaseAuth
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(edt_correo.getText().toString(), edt_contrasena.getText().toString())
@@ -62,12 +62,12 @@ public class registro extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Success message
-                                Toast.makeText(registro.this, "Cuenta creada correctamente.", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(registro.this, Login.class);
+                                Toast.makeText(Registro.this, "Cuenta creada correctamente.", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(Registro.this, Login.class);
                                 startActivity(intent);
                             } else {
                                 // Error message for account creation failure
-                                Toast.makeText(registro.this, "La cuenta no se ha podido crear correctamente.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Registro.this, "La cuenta no se ha podido crear correctamente.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
