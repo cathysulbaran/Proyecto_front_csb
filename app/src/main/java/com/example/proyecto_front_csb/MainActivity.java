@@ -14,7 +14,7 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btIniciarRegistro, btIniciarConsulta, btIniciarVentas, btIniciarInforme, btEliminarModificar;
+    private Button btIniciarRegistro, btIniciarConsulta, btIniciarVentas, btIniciarInforme, btEliminarModificar, btCerrar;
 
 
     @Override
@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         btEliminarModificar = findViewById(R.id.btEliminarModificar);
         btIniciarRegistro = findViewById(R.id.btRegistro);
         btIniciarConsulta = findViewById(R.id.btConsulta);
+        btCerrar = findViewById(R.id.btCerrar);
 
 
 
@@ -48,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btCerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Iniciar_Cerrar();
+            }
+        });
+
 
 
     }
@@ -67,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void Iniciar_EliminarModificar(){
         Intent intent = new Intent(this, EliminarModificar.class);
+        startActivity(intent);
+    }
+
+    public void Iniciar_Cerrar(){
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 }

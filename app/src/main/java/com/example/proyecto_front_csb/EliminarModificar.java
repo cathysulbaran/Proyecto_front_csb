@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.proyecto_front_csb.model.Productos;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -59,12 +60,13 @@ public class EliminarModificar extends AppCompatActivity {
     public void consultaArticulo(String nombre){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference productoRef = db.collection("Productos");
-        Query productoEspecifico = productoRef.whereEqualTo("Nombre", nombre);
-
+        String findeRango = nombre + "\uf8ff";
+        Query productoEspecifico = productoRef.whereGreaterThanOrEqualTo("Nombre", nombre).whereLessThan("Nombre", findeRango);
+        //Query productoEspecifico = productoRef.whereEqualTo("Nombre", nombre);
+        List<Productos> productos = new ArrayList<>();
         productoEspecifico.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                List<Productos> productos = new ArrayList<>();
                 if(task.isSuccessful()){
                     if(!task.getResult().isEmpty()){
                         for(QueryDocumentSnapshot document : task.getResult()){
@@ -81,29 +83,7 @@ public class EliminarModificar extends AppCompatActivity {
                             productos.add(producto);
                         }
                     }else{
-                        Query usuarioSimilares = productoRef.orderBy("Nombre").startAt(nombre).endBefore(nombre.substring(0, nombre.length()-1)+(char) (nombre.charAt(nombre.length()-1)+1));
-                        usuarioSimilares.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if(task.isSuccessful()){
-                                    for(QueryDocumentSnapshot document : task.getResult()){
-                                        String ean = document.getId();
-                                        String nombre = document.getString("Nombre");
-                                        String fichaTecnica = document.getString("FichaTecnica");
-                                        String marca = document.getString("Marca");
-                                        double precio = document.getDouble("Precio");
-                                        double unidadesDouble = document.getDouble("Unidades");
-                                        int unidades = Double.valueOf(unidadesDouble).intValue();
-                                        String entradaMercancia = document.getString("entradaMercancia");
-
-                                        Productos producto = new Productos(ean,nombre,fichaTecnica,marca,precio,unidades,entradaMercancia);
-                                        productos.add(producto);
-                                    }
-                                }else{
-                                    System.out.println("No se encontraron campos validos");
-                                }
-                            }
-                        });
+                        Toast.makeText(EliminarModificar.this, "No se han encontrado resultados", Toast.LENGTH_SHORT).show();
                     }
                     productoAdapter = new ProductosAdapter(productos);
                     productoAdapter.setOnClickListener(new View.OnClickListener() {
