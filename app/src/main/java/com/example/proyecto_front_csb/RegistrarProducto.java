@@ -24,7 +24,9 @@ public class RegistrarProducto extends AppCompatActivity {
     private EditText edt_stockDisp;
     private EditText edt_fecha;
     private EditText edt_fichaTenica;
+
     private EditText edt_precio;
+
     private FirebaseFirestore db;
 
     @SuppressLint("MissingInflatedId")
@@ -43,14 +45,9 @@ public class RegistrarProducto extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         findViewById(R.id.btRegistrar).setOnClickListener(v -> guardarProducto());
-        findViewById(R.id.btVolver).setOnClickListener(v -> atras());
 
     }
 
-    private void atras(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
     private void guardarProducto() {
         String ean = edt_ean.getText().toString();
         String nombre = edt_nombre.getText().toString();
@@ -109,7 +106,6 @@ public class RegistrarProducto extends AppCompatActivity {
         Productos producto = new Productos(ean, nombre, fichaTecnica, marca, precio, unidades, entradaMercancia);
         DataBase db = new DataBase();
         db.insertarProductos(this, producto);
-        limpiarCampos();
     }
 
     private void limpiarCampos() {

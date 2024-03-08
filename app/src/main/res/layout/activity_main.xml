@@ -91,4 +91,14 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.6" />
 
+    <Button
+        android:id="@+id/btCerrar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Cerrar Sesion"
+        android:backgroundTint="@color/boton_naranja"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
