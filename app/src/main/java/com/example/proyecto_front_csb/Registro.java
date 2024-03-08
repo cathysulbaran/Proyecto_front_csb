@@ -21,7 +21,9 @@ public class Registro extends AppCompatActivity {
     private EditText edt_username;
     private EditText edt_contrasena;
     private EditText edt_correo;
-    private Button bt_crear;
+    private Button bt_crear, bt_atras;
+
+
 
 
     @Override
@@ -33,11 +35,19 @@ public class Registro extends AppCompatActivity {
         edt_contrasena = findViewById(R.id.edtContrasena);
         edt_correo = findViewById(R.id.edtEmail);
         bt_crear = findViewById(R.id.btCrear);
+        bt_atras = findViewById(R.id.btAtras);
 
         bt_crear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Crear_Usuario();
+            }
+        });
+
+        bt_atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Inicio_atras();
             }
         });
     }
@@ -74,5 +84,9 @@ public class Registro extends AppCompatActivity {
         }
     }
 
+    public void Inicio_atras(){
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+    }
 
 }
