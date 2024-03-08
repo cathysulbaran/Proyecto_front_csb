@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 
 import com.example.proyecto_front_csb.DetallesArticulo;
 import com.example.proyecto_front_csb.MainActivity;
+import com.example.proyecto_front_csb.ProductosAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -19,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -112,6 +114,58 @@ public class DataBase {
                 });
     }
 
+    //Fragmento de codigo que se usara tanto para la activitie de consulta de todos los articulos como en
+    //caso de filto vacio en la busqueda por filtrado
+    public void consultarTodosArticulos(){
+        db.collection("Productos").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                             if(task.isSuccessful()){
+                                 List<Productos> productos = new ArrayList<>();
+                                 for(QueryDocumentSnapshot document : task.getResult()){
+                                     String ean, nombre, fichaTecnica, marca, entradaMercancia, precioStr, unidadesStr;
+
+                                     ean = document.getId();
+                                     nombre = document.getString("Nombre");
+                                     marca = document.getString("Marca");
+                                     fichaTecnica = document.getString("FichaTecnica");
+                                     entradaMercancia = document.getString("entradaMercancia");
+                                     precioStr = document.getString("Precio");
+                                     unidadesStr = document.getString("Unidades");
+                                     double precio = Double.parseDouble(precioStr);
+                                     int unidades = Integer.parseInt(unidadesStr);
+                                     Productos producto = new Productos(ean, nombre, fichaTecnica, marca, precio, unidades, entradaMercancia);
+                                     productos.add(producto);
+                                 }
+                             }
+                    }
+                });
+    }
+
+    public void modificarProductos(Context context, Productos producto){
+        Map<String, Object> map = new HashMap<>();
+        map.put("Nombre", producto.getNombre());
+        map.put("FichaTecnica", producto.getFichaTecnica());
+        map.put("Marca", producto.getMarca());
+        map.put("Precio", producto.getPrecio());
+        map.put("Unidades", producto.getUnidades());
+        map.put("entradaMercancia", producto.getEntradaMercancia());
+
+        db.collection("Productos").document(producto.getEan()).update(map)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(context, "El producto ha sido actualizado correctamente", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Error al actualizar el producto en la base de datos", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 
 
 
