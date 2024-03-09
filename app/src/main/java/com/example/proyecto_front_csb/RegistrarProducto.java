@@ -70,7 +70,7 @@ public class RegistrarProducto extends AppCompatActivity {
         Double precio = Double.valueOf(precioStr);
         Integer unidades = Integer.valueOf(unidadesStr);
 
-        // Verificar si el campo EAN tiene exactamente 13 caracteres
+        // 13 caracteres ean
         if (ean.length() != 13) {
             Toast.makeText(RegistrarProducto.this, "El EAN debe tener exactamente 13 caracteres", Toast.LENGTH_SHORT).show();
             return;
@@ -88,7 +88,7 @@ public class RegistrarProducto extends AppCompatActivity {
         int mes = Integer.parseInt(partesFecha[1]);
         int anio = Integer.parseInt(partesFecha[2]);
 
-            // Verificar si el mes es válido (de 1 a 12)
+            // para comprobar que no pones meses que no existen
         if (mes < 1 || mes > 12) {
             Toast.makeText(RegistrarProducto.this, "El mes ingresado no es válido", Toast.LENGTH_SHORT).show();
             return;
@@ -120,16 +120,16 @@ public class RegistrarProducto extends AppCompatActivity {
         edt_precio.setText("");
     }
 
-    // Función para obtener el número de días en un mes específico
+
     private int obtenerDiasEnMes(int mes, int anio) {
         int[] diasEnMes = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         if (mes == 2 && esBisiesto(anio)) {
-            return 29; // Febrero en año bisiesto
+            return 29; //
         }
         return diasEnMes[mes - 1];
     }
 
-    // Función para verificar si un año es bisiesto
+
     private boolean esBisiesto(int anio) {
         return (anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0);
     }
