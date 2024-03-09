@@ -16,6 +16,7 @@
         android:textSize="26dp"
         android:textStyle="italic|bold"
         android:text="Consulta Articulo"
+        android:textColor="@color/black"
         android:layout_centerHorizontal="true"
         />
 
@@ -34,12 +35,14 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:text="Nombre del articulo"
+        android:textColor="@color/black"
         />
     <EditText
         android:id="@+id/edtNombreArticulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:inputType="text"
         />
@@ -49,6 +52,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/boton_oscuro"
         android:text="Buscar"
+        android:textColor="@color/white"
         android:textSize="15sp"
         android:layout_gravity="center_horizontal"
         />
@@ -66,6 +70,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="370dp"
             android:layout_height="400dp"
+            android:textColor="@color/black"
             />
 
     </LinearLayout>
@@ -74,6 +79,7 @@
         android:id="@+id/btVolver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:backgroundTint="@color/boton_naranja"
         android:layout_below="@+id/linear02"
         android:text="Volver"

@@ -55,6 +55,7 @@
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/boton_oscuro"
             android:padding="18dp"
+            android:textColor="@color/white"
             android:text="Login"
             android:textSize="20sp" />
 
@@ -66,7 +67,7 @@
             android:text="Registrar "
             android:textAlignment="center"
             android:textSize="18dp"
-            android:textColor="@color/boton_naranja"
+            android:textColor="@color/black"
             android:textStyle="bold|italic"
             />
 

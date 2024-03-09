@@ -19,6 +19,8 @@
         android:textStyle="bold|italic"
         android:text="Consulta Articulo"
         android:textSize="26dp"
+        android:textColor="@color/black"
+
         />
 
     <LinearLayout
@@ -36,6 +38,7 @@
         android:textSize="18sp"
         android:padding="10dp"
         android:layout_marginTop="20dp"
+        android:textColor="@color/black"
         android:text="EAN:" />
 
         <EditText
@@ -46,6 +49,7 @@
             android:padding="10dp"
             android:textSize="15sp"
             android:inputType="number"
+            android:textColor="@color/black"
             android:maxLength="13"
             />
 
@@ -61,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Buscar"
+                    android:textColor="@color/white"
                 android:layout_marginEnd="16dp"
                 android:backgroundTint="@color/boton_oscuro"
                 />
@@ -69,6 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Volver"
+                    android:textColor="@color/black"
                 android:backgroundTint="@color/boton_naranja"
                 />
         </LinearLayout>
@@ -87,6 +93,7 @@
         android:padding="10dp"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
         android:layout_width="409dp"
         android:layout_height="406dp">
 

@@ -12,6 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="REGISTRO DE PRODUCTO"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +55,7 @@
         android:ems="10"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         android:inputType="number"
         android:maxLength="13"
@@ -63,6 +67,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6" />
@@ -72,6 +77,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Nombre"
+        android:textSize="15dp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/edtNombre"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6" />
@@ -81,6 +88,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="EAN"
+        android:textSize="15dp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
@@ -97,6 +106,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Ficha tecnica"
+        android:textSize="15dp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toTopOf="@+id/guideline11" />
@@ -107,6 +118,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -116,6 +128,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Marca"
+        android:textSize="15dp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.118"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -126,6 +140,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Stock Disponible"
+        android:textColor="@color/black"
+        android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/edtStockDisponible"
         app:layout_constraintEnd_toStartOf="@+id/textView9"
         app:layout_constraintStart_toStartOf="@+id/guideline6" />
@@ -135,6 +151,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Fecha de entrada"
+        android:textColor="@color/black"
+        android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/edtFecha"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline10" />
@@ -158,6 +176,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:textColor="@color/black"
         app:layout_constraintGuide_percent="0.5" />
 
     <EditText
@@ -175,6 +194,7 @@
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:ems="10"
+        android:textColor="@color/black"
         android:inputType="date"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
@@ -195,6 +215,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:textColor="@color/black"
         app:layout_constraintGuide_percent="0.7" />
 
     <Button
@@ -204,6 +225,7 @@
         android:layout_marginTop="48dp"
         android:backgroundTint="@color/boton_oscuro"
         android:text="Registrar"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -223,6 +245,7 @@
         android:layout_marginTop="48dp"
         android:backgroundTint="@color/boton_naranja"
         android:text="Volver"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
@@ -248,6 +271,8 @@
         android:layout_height="27dp"
         android:layout_marginTop="4dp"
         android:text="Precio"
+        android:textColor="@color/black"
+        android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/edtPrecio"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.0"
@@ -255,6 +280,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline23" />
 
     <EditText
+        android:textColor="@color/black"
         android:id="@+id/edtPrecio"
         android:layout_width="369dp"
         android:layout_height="43dp"

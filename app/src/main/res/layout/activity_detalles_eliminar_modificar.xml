@@ -14,6 +14,7 @@
         android:text="Articulo"
         android:textSize="26dp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/guideline31"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -27,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/boton_oscuro"
+        android:textColor="@color/white"
         android:text="Modificar Articulo"
         app:layout_constraintTop_toTopOf="@+id/guideline32"
         tools:layout_editor_absoluteX="-16dp" />
@@ -39,6 +41,7 @@
         android:backgroundTint="@color/boton_claro"
         android:enabled="false"
         android:text="Guardar"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/btEliminar"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -62,6 +65,7 @@
         android:backgroundTint="@color/boton_naranja"
         android:enabled="true"
         android:text="Atras"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/btGuardar"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -72,6 +76,7 @@
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/boton_oscuro"
         android:text="Eliminar"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/btModificar"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -94,6 +99,7 @@
         android:layout_width="170dp"
         android:layout_height="27dp"
         android:text="EAN:"
+        android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline33"
@@ -109,6 +115,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:enabled="false"
+        android:textColor="@color/black"
         android:inputType="text"
         android:text=""
         android:textSize="14sp"
@@ -128,6 +135,7 @@
         android:enabled="false"
         android:inputType="text"
         android:text=""
+        android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline34"
         app:layout_constraintEnd_toStartOf="@+id/guideline37"
@@ -144,6 +152,7 @@
         android:text="Marca:"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/guideline35"
         app:layout_constraintEnd_toStartOf="@+id/guideline37"
         app:layout_constraintHorizontal_bias="0.05"
@@ -160,6 +169,7 @@
         android:inputType="text"
         android:text=""
         android:textSize="14sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/guideline35"
         app:layout_constraintEnd_toStartOf="@+id/guideline37"
         app:layout_constraintHorizontal_bias="0.5"
@@ -178,6 +188,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toStartOf="@+id/guideline37"
         app:layout_constraintHorizontal_bias="0.05"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/guideline36"
         app:layout_constraintTop_toTopOf="@+id/guideline35"
         app:layout_constraintVertical_bias="0.0" />
@@ -194,6 +205,7 @@
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="@+id/guideline36"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
+        android:textColor="@color/black"
         app:layout_constraintVertical_bias="0.00" />
 
     <TextView
@@ -202,6 +214,7 @@
         android:layout_height="27dp"
         android:text="Nombre:"
         android:textSize="16sp"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline34"
         app:layout_constraintEnd_toStartOf="@+id/guideline37"
@@ -237,6 +250,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline36"
         app:layout_constraintTop_toBottomOf="@+id/textView25"
         app:layout_constraintVertical_bias="0.2"
+        android:textColor="@color/black"
         android:textAlignment="center"/>
 
     <EditText
@@ -252,6 +266,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline37"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline36"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/textView27"
         app:layout_constraintVertical_bias="0.2" />
 

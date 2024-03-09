@@ -17,6 +17,7 @@
         android:text="MI APLICACION"
         android:textAlignment="center"
         android:textSize="24sp"
+        android:textColor="@color/black"
         android:layout_marginTop="20dp"
         android:textStyle="bold|italic"
         />
@@ -35,6 +36,7 @@
         android:textSize="15sp"
         android:backgroundTint="#93BDBF"
         android:text="Registrar Producto"
+        android:textColor="@color/white"
         />
 
     <Button
@@ -44,6 +46,7 @@
         android:backgroundTint="#93BDBF"
         android:textSize="15sp"
         android:text="Eliminar o modificar producto"
+        android:textColor="@color/white"
         android:layout_marginTop="80dp"/>
 
     <Button
@@ -53,6 +56,7 @@
         android:backgroundTint="#93BDBF"
         android:textSize="15sp"
         android:text="Consulta Articulo"
+        android:textColor="@color/white"
         android:layout_marginTop="80dp"/>
 
     </LinearLayout>
@@ -62,6 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cerrar Sesion"
+        android:textColor="@color/black"
         android:backgroundTint="@color/boton_naranja"
         />
 
