@@ -1,5 +1,6 @@
 package com.example.proyecto_front_csb;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,16 +13,32 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.proyecto_front_csb.databinding.ActivityConsultaArticuloBinding;
 import com.example.proyecto_front_csb.model.DataBase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 public class ConsultaArticulo extends AppCompatActivity {
 
-    private Button btBuscar, btVolver;
+    ActivityConsultaArticuloBinding binding;
+
+    private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(), result ->{
+
+        if (result.getContents() == null){
+
+            Toast.makeText(this, "CANCELADO", Toast.LENGTH_SHORT).show();
+        } else {
+
+            binding.edtEANConsulta.setText(result.getContents());
+        }
+    });
+
+    private Button btBuscar, btVolver, btEAN;
     private EditText edtEANConsulta;
     private TableLayout table_articulos;
 
@@ -30,9 +47,21 @@ public class ConsultaArticulo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consulta_articulo);
 
+        binding = ActivityConsultaArticuloBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         btBuscar = findViewById(R.id.btBuscar);
         btVolver = findViewById(R.id.btVolver);
         edtEANConsulta = findViewById(R.id.edtEANConsulta);
+        btEAN = findViewById(R.id.btEAN);
+
+        binding.btEAN.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick ( View view){
+
+                escaner();
+            }
+        });
 
         btBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +75,20 @@ public class ConsultaArticulo extends AppCompatActivity {
                 Iniciar_Main();
             }
         });
+    }
+
+    public void escaner(){
+
+        ScanOptions options = new ScanOptions();
+        options.setDesiredBarcodeFormats(ScanOptions.ALL_CODE_TYPES);
+        options.setPrompt("ESCANEAR CODIGO");
+        options.setCameraId(0);
+        options.setOrientationLocked(false);
+        options.setBeepEnabled(false);
+        options.setCaptureActivity(CaptureActivityPortraint.class);
+        options.setBarcodeImageEnabled(false);
+
+        barcodeLauncher.launch(options);
     }
 
     public void Iniciar_DetallesArticulo(){

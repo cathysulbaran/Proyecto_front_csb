@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Iniciar_Main();
+                Iniciar_MainSinUsuario();
             }
         });
 

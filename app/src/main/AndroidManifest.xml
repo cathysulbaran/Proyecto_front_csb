@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Añadir permisos necesarios aquí -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto_front_csb"
         tools:targetApi="31"
+
         >
         <activity
             android:name=".Login"
@@ -40,8 +49,13 @@
         <activity
             android:name=".Registro"
             android:exported="false">
-
         </activity>
+        <activity
+            android:name=".CaptureActivityPortraint"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/zxing_CaptureTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"
+    />
     </application>
 
 </manifest>
