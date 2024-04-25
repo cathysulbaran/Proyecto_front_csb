@@ -298,7 +298,7 @@
         android:id="@+id/btCodigoBarras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Codigo de barras"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="11dp" />
 

@@ -43,6 +43,8 @@ dependencies {
     implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
     implementation("com.google.firebase:firebase-auth:22.3.1")
     implementation("androidx.bluetooth:bluetooth:1.0.0-alpha02")
+    implementation ("com.itextpdf:itext7-core:7.1.16")
+    implementation("androidx.compose.ui:ui-text-android:1.6.6")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

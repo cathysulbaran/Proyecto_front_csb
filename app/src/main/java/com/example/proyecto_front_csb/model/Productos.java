@@ -16,69 +16,73 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Productos {
-    private String ean;
-    private String nombre;
-    private String fichaTecnica;
-    private String marca;
-    private double precio;
-    private int unidades;
+    private String EAN;
+    private String Nombre;
+    private String FichaTecnica;
+    private String Marca;
+    private double Precio;
+    private int Unidades;
     private String entradaMercancia;
 
     public Productos(String  ean, String nombre, String fichaTecnica, String marca, double precio, int unidades, String entradaMercancia) {
-        this.ean = ean;
-        this.nombre = nombre;
-        this.fichaTecnica = fichaTecnica;
-        this.marca = marca;
-        this.precio = precio;
-        this.unidades = unidades;
+        this.EAN = ean;
+        this.Nombre = nombre;
+        this.FichaTecnica = fichaTecnica;
+        this.Marca = marca;
+        this.Precio = precio;
+        this.Unidades = unidades;
         this.entradaMercancia = entradaMercancia;
     }
+
+    public Productos() {
+        // Aquí puedes inicializar valores predeterminados si es necesario
+    }
     public String getEan() {
-        return ean;
+        return EAN;
     }
 
     public void setEan(String ean) {
-        this.ean = ean;
+        this.EAN = ean;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.Nombre = nombre;
     }
 
     public String getFichaTecnica() {
-        return fichaTecnica;
+        return FichaTecnica;
     }
 
     public void setFichaTecnica(String fichaTecnica) {
-        this.fichaTecnica = fichaTecnica;
+        this.FichaTecnica = fichaTecnica;
     }
 
     public String getMarca() {
-        return marca;
+        return Marca;
     }
 
     public void setMarca(String marca) {
-        this.marca = marca;
+        this.Marca = marca;
     }
 
     public double getPrecio() {
-        return precio;
+        return Precio;
     }
 
     public void setPrecio(double precio) {
-        this.precio = precio;
+        this.Precio = precio;
     }
 
     public int getUnidades() {
-        return unidades;
+        return Unidades;
     }
 
     public void setUnidades(int unidades) {
-        this.unidades = unidades;
+        this.Unidades = unidades;
     }
 
     public String getEntradaMercancia() {
@@ -88,4 +92,6 @@ public class Productos {
     public void setEntradaMercancia(String entradaMercancia) {
         this.entradaMercancia = entradaMercancia;
     }
+
+
 }

@@ -2,10 +2,12 @@ package com.example.proyecto_front_csb;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,7 +16,9 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btIniciarRegistro, btIniciarConsulta, btIniciarVentas, btIniciarInforme, btEliminarModificar, btCerrar;
+    private Button btIniciarRegistro, btIniciarConsulta, btIniciarVentas, btIniciarInforme, btEliminarModificar, btCerrar, btnGenerarInforme;
+
+    private static final int REQUEST_CODE_CREATE_FILE = 123;
 
 
     @Override
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         btIniciarRegistro = findViewById(R.id.btRegistro);
         btIniciarConsulta = findViewById(R.id.btConsulta);
         btCerrar = findViewById(R.id.btCerrar);
+        btnGenerarInforme = findViewById(R.id.btGenerarInforme);
 
 
 
@@ -56,9 +61,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        btnGenerarInforme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                generarInforme();
+            }
+        });
 
     }
+
+
 
 
     public void Iniciar_RegistrarProducto(){
@@ -81,5 +93,10 @@ public class MainActivity extends AppCompatActivity {
     public void Iniciar_Cerrar(){
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
+    }
+
+    private void generarInforme() {
+        InformeProductos informeProductos = new InformeProductos(MainActivity.this);
+        informeProductos.generarInformeProductos();
     }
 }

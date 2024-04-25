@@ -70,4 +70,10 @@
         android:backgroundTint="@color/boton_naranja"
         />
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/btGenerarInforme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Generador de informes" />
+
+</LinearLayout>
