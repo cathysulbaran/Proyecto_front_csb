@@ -8,6 +8,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -27,6 +29,10 @@ public class RegistrarProducto extends AppCompatActivity {
 
     private EditText edt_precio;
 
+    private Button btEAN;
+
+    private BarcodeScannerHelper barcodeScannerHelper;
+
     private FirebaseFirestore db;
 
     @SuppressLint("MissingInflatedId")
@@ -43,11 +49,35 @@ public class RegistrarProducto extends AppCompatActivity {
         edt_fichaTenica = findViewById(R.id.edtFichaTecnica);
         edt_precio = findViewById(R.id.edtPrecio);
         db = FirebaseFirestore.getInstance();
+        btEAN = findViewById(R.id.btEAN);
+
+        barcodeScannerHelper = new BarcodeScannerHelper(this);
 
         findViewById(R.id.btRegistrar).setOnClickListener(v -> guardarProducto());
         findViewById(R.id.btVolver).setOnClickListener(v -> volver());
 
+        findViewById(R.id.btCodigoBarras).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Iniciar el escaneo de código de barras
+                barcodeScannerHelper.startScanner();
+            }
+        });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // Manejar el resultado del escaneo
+        barcodeScannerHelper.handleScanResult(data, new BarcodeScannerHelper.OnScanResultListener() {
+            @Override
+            public void onScanResult(String contents) {
+                // Actualizar el campo edt_ean con el valor del código de barras escaneado
+                edt_ean.setText(contents);
+            }
+        });
+    }
+
 
     private void guardarProducto() {
         String ean = edt_ean.getText().toString();

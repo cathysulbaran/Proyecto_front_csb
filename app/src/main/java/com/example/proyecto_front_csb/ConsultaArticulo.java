@@ -1,6 +1,5 @@
 package com.example.proyecto_front_csb;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,23 +19,13 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.journeyapps.barcodescanner.ScanContract;
-import com.journeyapps.barcodescanner.ScanOptions;
+
 
 public class ConsultaArticulo extends AppCompatActivity {
 
     ActivityConsultaArticuloBinding binding;
 
-    private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(), result ->{
-
-        if (result.getContents() == null){
-
-            Toast.makeText(this, "CANCELADO", Toast.LENGTH_SHORT).show();
-        } else {
-
-            binding.edtEANConsulta.setText(result.getContents());
-        }
-    });
+    private BarcodeScannerHelper barcodeScannerHelper;
 
     private Button btBuscar, btVolver, btEAN;
     private EditText edtEANConsulta;
@@ -55,11 +44,12 @@ public class ConsultaArticulo extends AppCompatActivity {
         edtEANConsulta = findViewById(R.id.edtEANConsulta);
         btEAN = findViewById(R.id.btEAN);
 
-        binding.btEAN.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick ( View view){
+        barcodeScannerHelper = new BarcodeScannerHelper(this);
 
-                escaner();
+        btEAN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                barcodeScannerHelper.startScanner();
             }
         });
 
@@ -77,18 +67,15 @@ public class ConsultaArticulo extends AppCompatActivity {
         });
     }
 
-    public void escaner(){
-
-        ScanOptions options = new ScanOptions();
-        options.setDesiredBarcodeFormats(ScanOptions.ALL_CODE_TYPES);
-        options.setPrompt("ESCANEAR CODIGO");
-        options.setCameraId(0);
-        options.setOrientationLocked(false);
-        options.setBeepEnabled(false);
-        options.setCaptureActivity(CaptureActivityPortraint.class);
-        options.setBarcodeImageEnabled(false);
-
-        barcodeLauncher.launch(options);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        barcodeScannerHelper.handleScanResult(data, new BarcodeScannerHelper.OnScanResultListener() {
+            @Override
+            public void onScanResult(String contents) {
+                edtEANConsulta.setText(contents);
+            }
+        });
     }
 
     public void Iniciar_DetallesArticulo(){
