@@ -1,5 +1,6 @@
 package com.example.proyecto_front_csb;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -8,6 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -32,8 +39,21 @@ public class MainActivity extends AppCompatActivity {
         btCerrar = findViewById(R.id.btCerrar);
         btnGenerarInforme = findViewById(R.id.btGenerarInforme);
 
+        Intent intent = getIntent();
+        String email = intent.getStringExtra("email");
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Usuarios").document(email).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                boolean esAdmin = documentSnapshot.getBoolean("Administrador");
+                Toast.makeText(MainActivity.this, "Administrador: " + esAdmin, Toast.LENGTH_SHORT).show();
+                if(esAdmin){
 
+                }else {
 
+                }
+            }
+        });
         btIniciarRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

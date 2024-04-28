@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- Añadir permisos necesarios aquí -->
     <uses-feature
         android:name="android.hardware.camera"
@@ -13,7 +12,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -23,12 +21,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto_front_csb"
-        tools:targetApi="31"
-
-        >
+        tools:targetApi="31">
+        <activity
+            android:name=".ResetPassword"
+            android:exported="false" />
         <activity
             android:name=".Login"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,23 +42,21 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".EliminarModificar"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".detallesEliminarModificar"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".Registro"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".CaptureActivityPortraint"
             android:screenOrientation="fullSensor"
             android:theme="@style/zxing_CaptureTheme"
-            android:windowSoftInputMode="stateAlwaysHidden"
-    />
+            android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
 
 </manifest>

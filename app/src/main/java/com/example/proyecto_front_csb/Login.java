@@ -37,14 +37,14 @@ public class Login extends AppCompatActivity {
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Iniciar_MainSinUsuario();
+                Iniciar_Main();
             }
         });
 
         tv_registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this, Registro.class);
+                Intent intent = new Intent(Login.this, ResetPassword.class);
                 startActivity(intent);
             }
         });
@@ -64,6 +64,7 @@ public class Login extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Intent intent = new Intent(Login.this, MainActivity.class);
+                                intent.putExtra("email", email);
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(Login.this, "Los datos de inicio de sesion no son correctos", Toast.LENGTH_SHORT).show();
