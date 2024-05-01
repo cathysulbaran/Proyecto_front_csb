@@ -23,9 +23,6 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.Prod
         }
     }
 
-    public interface OnItemClickListener{
-        void onItemClick(Productos produto);
-    }
 
     public ProductosAdapter(List<Productos> productos) {
         this.productos = productos;
@@ -42,10 +39,13 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.Prod
     @Override
     public void onBindViewHolder(@NonNull ProductoViewHolder holder, int position) {
         Productos producto = productos.get(position);
-        holder.nombre.setText(producto.getNombre());
-        holder.ean.setText(producto.getEan());
+        holder.nombre.setText("Nombre: "+ producto.getNombre());
+        holder.ean.setText("EAN: "+ producto.getEan());
         String cantidad = Integer.toString(producto.getUnidades());
         holder.cantidad.setText("Cantidad: "+cantidad);
+        String precio = Double.toString(producto.getPrecio());
+        holder.precio.setText("Precio: "+ precio);
+
     }
 
     @Override
@@ -58,12 +58,13 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.Prod
     }
 
     public static class ProductoViewHolder extends RecyclerView.ViewHolder{
-        TextView ean, nombre, cantidad;
+        TextView ean, nombre, cantidad, precio;
         public ProductoViewHolder(@NonNull View itemView) {
             super(itemView);
             ean = itemView.findViewById(R.id.textEan);
             nombre = itemView.findViewById(R.id.textNombre);
             cantidad = itemView.findViewById(R.id.textCantidad);
+            precio = itemView.findViewById(R.id.textPrecio);
         }
     }
 

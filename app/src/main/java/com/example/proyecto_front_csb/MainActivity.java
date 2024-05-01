@@ -3,6 +3,7 @@ package com.example.proyecto_front_csb;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_CREATE_FILE = 123;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         btIniciarConsulta = findViewById(R.id.btConsulta);
         btCerrar = findViewById(R.id.btCerrar);
         btnGenerarInforme = findViewById(R.id.btGenerarInforme);
+        btIniciarVentas = findViewById(R.id.btVentas);
+
 
         Intent intent = getIntent();
         String email = intent.getStringExtra("email");
@@ -89,6 +93,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btIniciarVentas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Iniciar_Ventas();
+            }
+        });
+
     }
 
 
@@ -119,5 +130,10 @@ public class MainActivity extends AppCompatActivity {
     private void generarInforme() {
         InformeProductos informeProductos = new InformeProductos(MainActivity.this);
         informeProductos.generarInformeProductos();
+    }
+
+    private void Iniciar_Ventas() {
+        Intent intent = new Intent(this, Ventas.class);
+        startActivity(intent);
     }
 }

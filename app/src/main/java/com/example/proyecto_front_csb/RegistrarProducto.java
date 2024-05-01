@@ -78,7 +78,6 @@ public class RegistrarProducto extends AppCompatActivity {
         });
     }
 
-
     private void guardarProducto() {
         String ean = edt_ean.getText().toString();
         String nombre = edt_nombre.getText().toString();
