@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,7 +24,7 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btIniciarRegistro, btIniciarConsulta, btIniciarVentas, btIniciarInforme, btEliminarModificar, btCerrar, btnGenerarInforme;
+    private ImageView btIniciarRegistro, btIniciarConsulta, btIniciarVentas, btIniciarInforme, btEliminarModificar, btCerrar, btnGenerarInforme;
 
     private static final int REQUEST_CODE_CREATE_FILE = 123;
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_grid);
 
         btEliminarModificar = findViewById(R.id.btEliminarModificar);
         btIniciarRegistro = findViewById(R.id.btRegistro);
