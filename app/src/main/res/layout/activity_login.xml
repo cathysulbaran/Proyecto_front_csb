@@ -32,7 +32,7 @@
             android:inputType="text"
             android:padding="18dp"
             android:text=""
-            android:textColor="@color/black"
+            android:textColor="#DFDFDF"
             android:textSize="20sp" />
 
         <EditText
@@ -53,9 +53,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:backgroundTint="@color/boton_oscuro"
+            android:backgroundTint="@color/color_claro"
             android:padding="18dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="Login"
             android:textSize="20sp" />
 

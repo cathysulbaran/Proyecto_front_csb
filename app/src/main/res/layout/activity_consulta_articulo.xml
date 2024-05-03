@@ -19,8 +19,7 @@
         android:textStyle="bold|italic"
         android:text="Consulta Articulo"
         android:textSize="26dp"
-        android:textColor="@color/black"
-
+        android:textColor="@color/white"
         />
 
     <LinearLayout
@@ -38,7 +37,7 @@
         android:textSize="18sp"
         android:padding="10dp"
         android:layout_marginTop="20dp"
-        android:textColor="@color/black"
+        android:textColor="@color/color_claro"
         android:text="EAN:" />
 
         <EditText
@@ -49,7 +48,8 @@
             android:padding="10dp"
             android:textSize="15sp"
             android:inputType="number"
-            android:textColor="@color/black"
+            android:background="@drawable/rounded_corner"
+            android:textColor="@color/color_claro"
             android:maxLength="13"
             />
 
@@ -57,16 +57,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="30dp"
+            android:padding="15dp"
             android:textColor="@color/black"
             android:gravity="center_horizontal">
                 <Button
                 android:id="@+id/btBuscar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:text="Buscar"
-                    android:textColor="@color/white"
+                android:textColor="@color/white"
                 android:layout_marginEnd="16dp"
                 android:backgroundTint="@color/boton_oscuro"
                 />
@@ -75,14 +74,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Volver"
-                    android:textColor="@color/black"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/black"
                 android:backgroundTint="@color/boton_naranja"
                 />
+
+            <Button
+                android:id="@+id/btEAN"
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ScrollView"
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="@color/color_claro"
+                android:textColor="@color/black"
+                android:text="Escaneo" />
         </LinearLayout>
 
     </LinearLayout>
 
     <ScrollView
+        android:id="@+id/ScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/linearEAN"
@@ -94,9 +105,9 @@
         android:padding="10dp"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
-        android:layout_width="409dp"
-        android:layout_height="406dp">
+        android:textColor="@color/white"
+        android:layout_width="390dp"
+        android:layout_height="400dp">
 
         <TextView
             android:id="@+id/tituloDetalles"
@@ -104,6 +115,7 @@
             android:layout_height="wrap_content"
             android:textSize="26sp"
             android:padding="5dp"
+            android:textColor="@color/white"
             android:textStyle="italic|bold"
             android:text="Descripcion: " />
 
@@ -115,11 +127,13 @@
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:text="EAN:"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textEanValor"
                 android:textSize="20dp"
+                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </TableRow>
@@ -133,6 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textSize="20dp"
+                android:textColor="@color/white"
                 android:text="Nombre:"
                 android:textStyle="bold" />
 
@@ -142,6 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textSize="20dp"
+                android:textColor="@color/white"
                 />
         </TableRow>
 
@@ -152,6 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Marca:"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:layout_marginTop="5dp"
@@ -162,6 +179,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
+                android:textColor="@color/white"
                 android:layout_marginTop="5dp"
                 />
         </TableRow>
@@ -175,6 +193,7 @@
                 android:text="Precio:"
                 android:textStyle="bold"
                 android:textSize="20dp"
+                android:textColor="@color/white"
                 android:layout_marginTop="5dp"
                 />
 
@@ -183,6 +202,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
+                android:textColor="@color/white"
                 android:layout_marginTop="5dp"
                 />
         </TableRow>
@@ -198,6 +218,7 @@
                 android:text="Ficha Tecnica:"
                 android:textStyle="bold"
                 android:textSize="20dp"
+                android:textColor="@color/white"
                 android:layout_marginTop="5dp"/>
 
             <TextView
@@ -206,6 +227,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="20dp"
+                android:textColor="@color/white"
                 android:layout_marginTop="5dp"/>
         </TableRow>
 
@@ -218,6 +240,7 @@
                 android:layout_height="wrap_content"
                 android:text="Stock Disponible:"
                 android:textStyle="bold"
+                android:textColor="@color/white"
                 android:textSize="20dp"
                 android:layout_marginEnd="3dp"
                 android:layout_marginTop="5dp"
@@ -228,6 +251,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
+                android:textColor="@color/white"
                 android:layout_marginTop="5dp"
                 />
         </TableRow>
@@ -242,6 +266,7 @@
                 android:layout_marginEnd="3dp"
                 android:textStyle="bold"
                 android:textSize="20dp"
+                android:textColor="@color/white"
                 android:layout_marginTop="5dp"
                 />
 
@@ -250,6 +275,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
+                android:textColor="@color/white"
                 android:layout_marginTop="5dp"
                 />
         </TableRow>
@@ -258,10 +284,6 @@
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/btEAN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Codigo barras" />
+
 
 </RelativeLayout>
