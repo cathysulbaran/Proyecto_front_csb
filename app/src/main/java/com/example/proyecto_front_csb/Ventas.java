@@ -39,20 +39,25 @@ public class Ventas extends AppCompatActivity {
     private EditText ean;
     private Button buscar;
     private Button volver;
+    private Button verCarrito; // Nuevo botón para ver el carrito
 
     private RecyclerView recyclerView;
-    private ProductosAdapter productoAdapter;
+    private Adaptador_ventas Adaptador_ventas;
+    private List<Productos> productosSeleccionados; // Lista para almacenar productos seleccionados
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ventas);
 
-        ean = findViewById(R.id.edtEAN); // Cambiar el id del EditText en el layout XML
+        ean = findViewById(R.id.edtEAN);
         buscar = findViewById(R.id.btBuscar);
         volver = findViewById(R.id.btVolver);
+        verCarrito = findViewById(R.id.btVerCarrito); // Inicializar el botón para ver el carrito
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        productosSeleccionados = new ArrayList<>(); // Inicializar la lista de productos seleccionados
 
         buscar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +74,21 @@ public class Ventas extends AppCompatActivity {
         });
 
         volver.setOnClickListener(v -> volver());
+
+        verCarrito.setOnClickListener(v -> verCarrito());
+    }
+
+    // Método para agregar productos al carrito
+    private void agregarAlCarrito(Productos producto) {
+        productosSeleccionados.add(producto);
+        Toast.makeText(this, "Producto agregado al carrito", Toast.LENGTH_SHORT).show();
+    }
+
+    // Método para visualizar el carrito
+    private void verCarrito() {
+        Intent intent = new Intent(this, CarritoActivity.class);
+        intent.putParcelableArrayListExtra("productosSeleccionados", (ArrayList<Productos>) productosSeleccionados);
+        startActivity(intent);
     }
 
     public void consultaArticulo(String ean) {
@@ -82,10 +102,19 @@ public class Ventas extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Productos producto = document.toObject(Productos.class);
-                        List<Productos> productos = new ArrayList<>();
-                        productos.add(producto);
-                        productoAdapter = new ProductosAdapter(productos);
-                        recyclerView.setAdapter(productoAdapter);
+
+                        // Verificar si hay suficiente stock disponible
+                        if (producto.getUnidades() > 0) {
+                            // Reducir el stock disponible
+                            producto.setUnidades(producto.getUnidades() - 1);
+                            // Agregar el producto al carrito
+                            agregarAlCarrito(producto);
+                            // Actualizar la interfaz de usuario
+                            Adaptador_ventas = new Adaptador_ventas(productosSeleccionados);
+                            recyclerView.setAdapter(Adaptador_ventas);
+                        } else {
+                            Toast.makeText(Ventas.this, "No hay suficiente stock disponible", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
                         Toast.makeText(Ventas.this, "No se encontró el producto", Toast.LENGTH_SHORT).show();
                     }
@@ -96,8 +125,10 @@ public class Ventas extends AppCompatActivity {
         });
     }
 
+
     public void volver() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }
+

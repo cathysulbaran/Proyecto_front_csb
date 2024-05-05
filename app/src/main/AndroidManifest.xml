@@ -23,6 +23,15 @@
         android:theme="@style/Theme.Proyecto_front_csb"
         tools:targetApi="31">
         <activity
+            android:name=".Adaptador_ventas"
+            android:exported="false" />
+        <activity
+            android:name=".adaptador_ventas"
+            android:exported="false" />
+        <activity
+            android:name=".CarritoActivity"
+            android:exported="false" />
+        <activity
             android:name=".Ventas"
             android:exported="false" />
         <activity

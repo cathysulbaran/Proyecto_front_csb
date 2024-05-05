@@ -1,53 +1,63 @@
 package com.example.proyecto_front_csb;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.example.proyecto_front_csb.model.Productos;
 
-import java.util.List;
 
-public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.ProductoViewHolder> implements View.OnClickListener{
-    private List <Productos> productos;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Adaptador_ventas extends RecyclerView.Adapter<Adaptador_ventas.ProductoViewHolder> implements View.OnClickListener {
+    private List<Productos> productos;
     private View.OnClickListener listener;
+
     @Override
     public void onClick(View v) {
-        if(listener!=null){
+        if(listener != null){
             listener.onClick(v);
         }
     }
 
-
-    public ProductosAdapter(List<Productos> productos) {
+    public Adaptador_ventas(List<Productos> productos) {
         this.productos = productos;
     }
 
     @NonNull
     @Override
     public ProductoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_productos,parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_adaptador_ventas, parent, false);
         view.setOnClickListener(this);
         return new ProductoViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ProductoViewHolder holder, int position) {
+
         Productos producto = productos.get(position);
-        holder.nombre.setText("Nombre: "+ producto.getNombre());
-        holder.ean.setText("EAN: "+ producto.getEan());
+        holder.nombre.setText("Nombre: " + producto.getNombre());
         String cantidad = Integer.toString(producto.getUnidades());
-        holder.cantidad.setText("Cantidad: "+cantidad);
+        holder.cantidad.setText("Cantidad: " + cantidad);
         String precio = Double.toString(producto.getPrecio());
-        holder.precio.setText("Precio: "+ precio);
+        holder.precio.setText("Precio: " + precio);
+
+
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -59,17 +69,15 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.Prod
     }
 
     public static class ProductoViewHolder extends RecyclerView.ViewHolder{
-        TextView ean, nombre, cantidad, precio;
+        TextView nombre, cantidad, precio;
 
 
         public ProductoViewHolder(@NonNull View itemView) {
             super(itemView);
-            ean = itemView.findViewById(R.id.textEan);
             nombre = itemView.findViewById(R.id.textNombre);
             cantidad = itemView.findViewById(R.id.textCantidad);
             precio = itemView.findViewById(R.id.textPrecio);
 
         }
     }
-
 }

@@ -1,6 +1,8 @@
 package com.example.proyecto_front_csb.model;
 
 import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,7 +17,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Productos {
+public class Productos implements Parcelable {
     private String EAN;
     private String Nombre;
     private String FichaTecnica;
@@ -94,4 +96,37 @@ public class Productos {
     }
 
 
+    // Método necesario para Parcelable
+    protected Productos(Parcel in) {
+        Nombre = in.readString();
+        Precio = in.readDouble();
+        // Leer otros campos si existen
+    }
+
+    // Método necesario para Parcelable
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(Nombre);
+        dest.writeDouble(Precio);
+        // Escribir otros campos si existen
+    }
+
+    // Método necesario para Parcelable
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    // Parcelable CREATOR
+    public static final Creator<Productos> CREATOR = new Creator<Productos>() {
+        @Override
+        public Productos createFromParcel(Parcel in) {
+            return new Productos(in);
+        }
+
+        @Override
+        public Productos[] newArray(int size) {
+            return new Productos[size];
+        }
+    };
 }
