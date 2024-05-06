@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,9 +38,7 @@ import java.util.List;
 public class Ventas extends AppCompatActivity {
 
     private EditText ean;
-    private Button buscar;
-    private Button volver;
-    private Button verCarrito; // Nuevo botón para ver el carrito
+    private ImageView volver, verCarrito, buscar;
 
     private RecyclerView recyclerView;
     private Adaptador_ventas Adaptador_ventas;

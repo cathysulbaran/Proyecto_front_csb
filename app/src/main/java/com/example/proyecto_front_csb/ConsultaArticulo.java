@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +28,8 @@ public class ConsultaArticulo extends AppCompatActivity {
 
     private BarcodeScannerHelper barcodeScannerHelper;
 
-    private Button btBuscar, btVolver, btEAN;
+    private ImageView btBuscar, btVolver;
+    private Button btEAN;
     private EditText edtEANConsulta;
     private TableLayout table_articulos;
 

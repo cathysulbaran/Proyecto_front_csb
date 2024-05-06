@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.proyecto_front_csb.model.Productos;
@@ -27,8 +29,7 @@ import java.util.List;
 public class EliminarModificar extends AppCompatActivity {
 
     private EditText nombre;
-    private Button buscar;
-    private Button volver;
+    private ImageView volver, buscar;
 
     private RecyclerView recyclerView;
     private ProductosAdapter productoAdapter;
@@ -54,7 +55,7 @@ public class EliminarModificar extends AppCompatActivity {
             }
         });
 
-        volver.setOnClickListener(v -> voler());
+        volver.setOnClickListener(v -> volver());
     }
 
     public void consultaArticulo(String nombre){
@@ -116,7 +117,7 @@ public class EliminarModificar extends AppCompatActivity {
 
     }
 
-    public void voler(){
+    public void volver(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

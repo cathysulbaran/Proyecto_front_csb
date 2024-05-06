@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.proyecto_front_csb.model.DataBase;
@@ -19,7 +20,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class detallesEliminarModificar extends AppCompatActivity {
     private EditText etEan, etNombre, etMarca, etPrecio, etFecha;
-    private Button btModificar, btGuardar, btCancelar, btAtras, btEliminar;
+    private Button btModificar, btGuardar, btCancelar, btEliminar;
+    private ImageView btAtras;
 
     FirebaseFirestore db;
     @Override
