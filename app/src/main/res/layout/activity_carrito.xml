@@ -1,18 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewProductos"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_lista"
+    android:padding="10dp">
 
     <TextView
-        android:id="@+id/txtResumen"
-        android:layout_width="wrap_content"
+        android:id="@+id/txtTitulo3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_marginTop="400dp"/>
+        android:text="Listado de articulos"
+        android:textSize="26dp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/color_claro"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"/>
+
+    <LinearLayout
+        android:id="@+id/linearlistado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/txtTitulo3"   >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewProductos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:textSize="18sp"
+            android:textColor="@color/color_claro"
+            />
+
+        <TextView
+            android:id="@+id/txtResumen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="18sp"
+            android:textColor="@color/color_claro"
+            android:layout_below="@+id/recyclerViewProductos"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/linearlistado">
+
+        <TextView
+            android:id="@+id/txtUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre y Apellido"
+            android:textSize="15dp"
+            android:textColor="@color/color_claro" />
+
+        <EditText
+            android:id="@+id/edtUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:textColor="@color/color_claro"
+            android:padding="8dp"
+            />
+        <TextView
+            android:id="@+id/txtTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telefono"
+            android:textSize="15dp"
+            android:textColor="@color/color_claro" />
+
+        <EditText
+            android:id="@+id/edtTelefonoUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:textColor="@color/color_claro"
+            android:inputType="number"
+            android:padding="8dp"
+            />
+        <TextView
+            android:id="@+id/txtDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Direccion"
+            android:textSize="15dp"
+            android:textColor="@color/color_claro" />
+
+        <EditText
+            android:id="@+id/edtDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:textColor="@color/color_claro"
+            android:padding="8dp"
+            />
+        <Button
+            android:id="@+id/btGenerarCompra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/color_claro"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:text="Generar Compra"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
 
 </RelativeLayout>

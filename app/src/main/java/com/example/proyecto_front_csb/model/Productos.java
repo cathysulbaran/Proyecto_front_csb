@@ -12,6 +12,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ public class Productos implements Parcelable {
     private double Precio;
     private int Unidades;
     private String entradaMercancia;
+    private boolean isSelected;
 
     public Productos(String  ean, String nombre, String fichaTecnica, String marca, double precio, int unidades, String entradaMercancia) {
         this.EAN = ean;
@@ -34,6 +36,17 @@ public class Productos implements Parcelable {
         this.Precio = precio;
         this.Unidades = unidades;
         this.entradaMercancia = entradaMercancia;
+        this.isSelected = false;
+    }
+
+    public Productos(String nombre, double precio, int unidades) {
+
+        this.Nombre = nombre;
+
+        this.Precio = precio;
+        this.Unidades = unidades;
+
+        this.isSelected = false;
     }
 
     public Productos() {
@@ -94,6 +107,13 @@ public class Productos implements Parcelable {
     public void setEntradaMercancia(String entradaMercancia) {
         this.entradaMercancia = entradaMercancia;
     }
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
 
     // Método necesario para Parcelable
@@ -129,4 +149,13 @@ public class Productos implements Parcelable {
             return new Productos[size];
         }
     };
+    public static Productos DocumentSnapshot(QueryDocumentSnapshot document) {
+
+        String nombre = document.getString("Nombre");
+        double precio = document.getDouble("Precio");
+        double unidadesDouble = document.getDouble("Unidades");
+        int unidades = (int) unidadesDouble; // Convertir a entero
+
+        return new Productos(nombre, precio, unidades);
+    }
 }

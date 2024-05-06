@@ -77,13 +77,41 @@ public class Ventas extends AppCompatActivity {
         verCarrito.setOnClickListener(v -> verCarrito());
     }
 
-    // Método para agregar productos al carrito
     private void agregarAlCarrito(Productos producto) {
         productosSeleccionados.add(producto);
         Toast.makeText(this, "Producto agregado al carrito", Toast.LENGTH_SHORT).show();
     }
+    private void AgregarCarritoConDialog(Productos producto) {
+        // Verificar si hay stock disponible
+        if (producto.getUnidades() > 0) {
+            // Crea un diálogo para mostrar los detalles del artículo
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Detalles del Artículo");
+            builder.setMessage("Nombre: " + producto.getNombre() + "\n" +
+                    "Precio: " + producto.getPrecio() + "\n" +
+                    "Stock Disponible: " + producto.getUnidades());
 
-    // Método para visualizar el carrito
+            builder.setPositiveButton("Agregar al Carrito", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    agregarAlCarrito(producto);
+                    Adaptador_ventas = new Adaptador_ventas(productosSeleccionados);
+                    recyclerView.setAdapter(Adaptador_ventas);
+                }
+            });
+            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.create().show();
+        } else {
+            Toast.makeText(this, "No hay suficiente stock disponible", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
     private void verCarrito() {
         Intent intent = new Intent(this, CarritoActivity.class);
         intent.putParcelableArrayListExtra("productosSeleccionados", (ArrayList<Productos>) productosSeleccionados);
@@ -107,7 +135,7 @@ public class Ventas extends AppCompatActivity {
                             // Reducir el stock disponible
                             producto.setUnidades(producto.getUnidades() - 1);
                             // Agregar el producto al carrito
-                            agregarAlCarrito(producto);
+                            AgregarCarritoConDialog(producto);
                             // Actualizar la interfaz de usuario
                             Adaptador_ventas = new Adaptador_ventas(productosSeleccionados);
                             recyclerView.setAdapter(Adaptador_ventas);
