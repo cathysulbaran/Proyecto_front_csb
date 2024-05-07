@@ -77,38 +77,40 @@ public class Ventas extends AppCompatActivity {
         verCarrito.setOnClickListener(v -> verCarrito());
     }
 
+
     private void agregarAlCarrito(Productos producto) {
         productosSeleccionados.add(producto);
         Toast.makeText(this, "Producto agregado al carrito", Toast.LENGTH_SHORT).show();
     }
-    private void AgregarCarritoConDialog(Productos producto) {
-        // Verificar si hay stock disponible
-        if (producto.getUnidades() > 0) {
-            // Crea un diálogo para mostrar los detalles del artículo
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Detalles del Artículo");
-            builder.setMessage("Nombre: " + producto.getNombre() + "\n" +
-                    "Precio: " + producto.getPrecio() + "\n" +
-                    "Stock Disponible: " + producto.getUnidades());
 
-            builder.setPositiveButton("Agregar al Carrito", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    agregarAlCarrito(producto);
-                    Adaptador_ventas = new Adaptador_ventas(productosSeleccionados);
-                    recyclerView.setAdapter(Adaptador_ventas);
-                }
-            });
-            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            builder.create().show();
-        } else {
-            Toast.makeText(this, "No hay suficiente stock disponible", Toast.LENGTH_SHORT).show();
-        }
+
+    private void AgregarCarritoConDialog(Productos producto) {
+        // Crea un diálogo para mostrar los detalles del artículo
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Detalles del Artículo");
+        builder.setMessage("Nombre: " + producto.getNombre() + "\n" +
+                "Precio: " + producto.getPrecio() + "\n" +
+                "Stock Disponible: " + producto.getUnidades());
+
+        builder.setPositiveButton("Agregar al Carrito", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Reducir el stock disponible
+                producto.setUnidades(producto.getUnidades() - 1);
+                // Agregar el producto al carrito
+                agregarAlCarrito(producto);
+                // Actualizar la interfaz de usuario
+                Adaptador_ventas = new Adaptador_ventas(productosSeleccionados);
+                recyclerView.setAdapter(Adaptador_ventas);
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
     }
 
 
@@ -132,13 +134,8 @@ public class Ventas extends AppCompatActivity {
 
                         // Verificar si hay suficiente stock disponible
                         if (producto.getUnidades() > 0) {
-                            // Reducir el stock disponible
-                            producto.setUnidades(producto.getUnidades() - 1);
                             // Agregar el producto al carrito
                             AgregarCarritoConDialog(producto);
-                            // Actualizar la interfaz de usuario
-                            Adaptador_ventas = new Adaptador_ventas(productosSeleccionados);
-                            recyclerView.setAdapter(Adaptador_ventas);
                         } else {
                             Toast.makeText(Ventas.this, "No hay suficiente stock disponible", Toast.LENGTH_SHORT).show();
                         }
@@ -151,7 +148,6 @@ public class Ventas extends AppCompatActivity {
             }
         });
     }
-
 
     public void volver() {
         Intent intent = new Intent(this, MainActivity.class);

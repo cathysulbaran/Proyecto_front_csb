@@ -28,6 +28,7 @@ public class Productos implements Parcelable {
     private String entradaMercancia;
     private boolean isSelected;
 
+
     public Productos(String  ean, String nombre, String fichaTecnica, String marca, double precio, int unidades, String entradaMercancia) {
         this.EAN = ean;
         this.Nombre = nombre;
