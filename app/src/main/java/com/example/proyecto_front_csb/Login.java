@@ -3,7 +3,9 @@ package com.example.proyecto_front_csb;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,6 +18,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Login extends AppCompatActivity {
     private EditText edt_username;
@@ -58,14 +64,31 @@ public class Login extends AppCompatActivity {
             //Mensaje de error si los campos estan vacios
             Toast.makeText(Login.this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
         } else {
+            //Verificamos si el usuario y contraseña son validos
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Intent intent = new Intent(Login.this, MainActivity.class);
-                                intent.putExtra("email", email);
-                                startActivity(intent);
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                String idUsuario = user.getUid();
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                DocumentReference userRef = db.collection("Usuarios").document(idUsuario);
+                                userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        DocumentSnapshot document = task.getResult();
+                                        boolean esAdmin = document.getBoolean("esAdmin");
+                                        Intent intent = new Intent(Login.this, MainActivity.class);
+                                        SharedPreferences sharedPreferences = getSharedPreferences("usuario", Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putBoolean("esAdmin", esAdmin);
+                                        editor.apply();
+                                        startActivity(intent);
+                                    }
+                                });
+
+
                             } else {
                                 Toast.makeText(Login.this, "Los datos de inicio de sesion no son correctos", Toast.LENGTH_SHORT).show();
                             }
@@ -78,4 +101,5 @@ public class Login extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
 }

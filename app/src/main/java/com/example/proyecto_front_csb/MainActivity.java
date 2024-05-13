@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -44,21 +46,12 @@ public class MainActivity extends AppCompatActivity {
         btIniciarVentas = findViewById(R.id.btVentas);
 
 
-        Intent intent = getIntent();
-        String email = intent.getStringExtra("email");
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Usuarios").document(email).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                boolean esAdmin = documentSnapshot.getBoolean("Administrador");
-                Toast.makeText(MainActivity.this, "Administrador: " + esAdmin, Toast.LENGTH_SHORT).show();
-                if(esAdmin){
+        SharedPreferences sharedPreferences = getSharedPreferences("usuario", Context.MODE_PRIVATE);
+        boolean esAdmin = sharedPreferences.getBoolean("esAdmin", false);
 
-                }else {
+        if(!esAdmin){
 
-                }
-            }
-        });
+        }
         btIniciarRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

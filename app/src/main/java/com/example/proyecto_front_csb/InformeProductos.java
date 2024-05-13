@@ -46,6 +46,7 @@ public class InformeProductos {
                 if (task.isSuccessful()) {
                     List<Productos> productosList = new ArrayList<>();
                     for (QueryDocumentSnapshot document : task.getResult()) {
+
                         Productos producto = document.toObject(Productos.class);
                         productosList.add(producto);
                     }
