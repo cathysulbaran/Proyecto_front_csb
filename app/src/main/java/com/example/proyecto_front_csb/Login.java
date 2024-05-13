@@ -1,9 +1,12 @@
 package com.example.proyecto_front_csb;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -35,6 +38,32 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Funcionalidad para no redirigirse a ninguna activity sin iniciar sesion pulsando a atras
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                new AlertDialog.Builder(Login.this)
+                        .setTitle("Salir de la aplicación")
+                        .setMessage("¿Seguro que deseas salir de la aplicación?")
+                        .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Si el usuario confirma, sale de la aplicación
+                                finishAffinity();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Si el usuario cancela, cierra el diálogo
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
+
         edt_username = findViewById(R.id.edtUsuario);
         edt_contrasena = findViewById(R.id.edtContrasena);
         bt_login = findViewById(R.id.btLogin);
@@ -54,6 +83,8 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
     }
     public void Iniciar_Main() {
@@ -85,6 +116,7 @@ public class Login extends AppCompatActivity {
                                         editor.putBoolean("esAdmin", esAdmin);
                                         editor.apply();
                                         startActivity(intent);
+
                                     }
                                 });
 

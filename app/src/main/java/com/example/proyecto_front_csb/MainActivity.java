@@ -1,11 +1,14 @@
 package com.example.proyecto_front_csb;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -45,7 +49,33 @@ public class MainActivity extends AppCompatActivity {
         btnGenerarInforme = findViewById(R.id.btGenerarInforme);
         btIniciarVentas = findViewById(R.id.btVentas);
 
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Cerrar Sesión")
+                        .setMessage("¿Deseas cerrar la sesión por completo?")
+                        .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Si el usuario confirma, sale de la aplicación
+                                cerrarSession();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Si el usuario cancela, cierra el diálogo
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
 
+
+        //Variable de sesion establecida para que no se borre hasta que pulsemos cerrar sesion
         SharedPreferences sharedPreferences = getSharedPreferences("usuario", Context.MODE_PRIVATE);
         boolean esAdmin = sharedPreferences.getBoolean("esAdmin", false);
 
@@ -127,6 +157,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void Iniciar_Ventas() {
         Intent intent = new Intent(this, Ventas.class);
+        startActivity(intent);
+    }
+    private void cerrarSession(){
+        FirebaseAuth sesion = FirebaseAuth.getInstance();
+        sesion.signOut();
+        Intent intent = new Intent(this, Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 }
