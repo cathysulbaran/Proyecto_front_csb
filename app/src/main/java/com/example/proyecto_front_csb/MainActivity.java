@@ -1,12 +1,9 @@
 package com.example.proyecto_front_csb;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,25 +11,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ImageView btIniciarRegistro, btIniciarConsulta, btIniciarVentas, btIniciarInforme, btEliminarModificar, btCerrar, btnGenerarInforme;
+    private LinearLayout btIniciarConsulta, btIniciarRegistro, btIniciarVentas, btEliminarModificar, btRegistrarUsuarios, btnGenerarInforme;
 
     private static final int REQUEST_CODE_CREATE_FILE = 123;
 
@@ -46,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         btEliminarModificar = findViewById(R.id.btEliminarModificar);
         btIniciarRegistro = findViewById(R.id.btRegistro);
         btIniciarConsulta = findViewById(R.id.btConsulta);
-        btCerrar = findViewById(R.id.btCerrar);
+        btRegistrarUsuarios = findViewById(R.id.btRegistroUsuarios);
         btnGenerarInforme = findViewById(R.id.btGenerarInforme);
         btIniciarVentas = findViewById(R.id.btVentas);
 
@@ -83,7 +67,10 @@ public class MainActivity extends AppCompatActivity {
         boolean esAdmin = sharedPreferences.getBoolean("esAdmin", false);
 
         if(!esAdmin){
-
+            btIniciarRegistro.setVisibility(View.INVISIBLE);
+            btIniciarRegistro.setEnabled(false);
+            btRegistrarUsuarios.setVisibility(View.INVISIBLE);
+            btRegistrarUsuarios.setEnabled(false);
         }
         btIniciarRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,10 +92,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btCerrar.setOnClickListener(new View.OnClickListener() {
+        btRegistrarUsuarios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Iniciar_Cerrar();
+                registrarUsuarios();
             }
         });
 
@@ -148,8 +135,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void Iniciar_Cerrar(){
-        Intent intent = new Intent(this, Login.class);
+    public void registrarUsuarios(){
+        Intent intent = new Intent(this, Registro.class);
         startActivity(intent);
     }
 
