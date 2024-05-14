@@ -14,11 +14,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Productos implements Parcelable {
+public class Productos implements Serializable {
     private String EAN;
     private String Nombre;
     private String FichaTecnica;
@@ -124,32 +125,6 @@ public class Productos implements Parcelable {
         // Leer otros campos si existen
     }
 
-    // Método necesario para Parcelable
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(Nombre);
-        dest.writeDouble(Precio);
-        // Escribir otros campos si existen
-    }
-
-    // Método necesario para Parcelable
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    // Parcelable CREATOR
-    public static final Creator<Productos> CREATOR = new Creator<Productos>() {
-        @Override
-        public Productos createFromParcel(Parcel in) {
-            return new Productos(in);
-        }
-
-        @Override
-        public Productos[] newArray(int size) {
-            return new Productos[size];
-        }
-    };
     public static Productos DocumentSnapshot(QueryDocumentSnapshot document) {
 
         String nombre = document.getString("Nombre");

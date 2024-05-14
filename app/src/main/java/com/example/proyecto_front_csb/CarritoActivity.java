@@ -71,7 +71,7 @@ public class CarritoActivity extends AppCompatActivity {
         txtResumen = findViewById(R.id.txtResumen);
 
         // Obtener la lista de productos seleccionados del intent
-        productosSeleccionados = getIntent().getParcelableArrayListExtra("productosSeleccionados");
+        productosSeleccionados = (ArrayList<Productos>) getIntent().getSerializableExtra("productosSeleccionados");
 
         // Configurar el adaptador para el RecyclerView
         Adaptador_ventas = new Adaptador_ventas(productosSeleccionados);
@@ -138,7 +138,10 @@ public class CarritoActivity extends AppCompatActivity {
         double total = 0;
 
         for (Productos producto : productosSeleccionados) {
-            total += producto.getPrecio();
+            int cantidad = producto.getUnidades();
+            double precio = producto.getPrecio();
+            double resultado = precio*cantidad;
+            total = total+resultado;
         }
 
         resumen.append("Total: ").append(total);

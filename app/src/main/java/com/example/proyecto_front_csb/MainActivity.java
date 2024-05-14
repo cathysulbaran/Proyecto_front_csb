@@ -3,6 +3,7 @@ package com.example.proyecto_front_csb;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         btCerrar = findViewById(R.id.btCerrar);
         btnGenerarInforme = findViewById(R.id.btGenerarInforme);
         btIniciarVentas = findViewById(R.id.btVentas);
+
+
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
