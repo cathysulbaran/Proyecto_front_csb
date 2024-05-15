@@ -62,7 +62,17 @@ public class InformeProductos {
                         // Asignar otros campos del producto
                         producto.setNombre(document.getString("nombre"));
                         producto.setMarca(document.getString("marca"));
-                        // Asignar otros campos...
+                        // Convertir el valor de tipo String a int y asignarlo a unidades
+                        String unidadesString = document.getString("unidades");
+                        if (unidadesString != null) {
+                            int unidades = Integer.parseInt(unidadesString);
+                            producto.setUnidades(unidades);
+                        } else {
+                            // Manejar el caso en el que el valor de "unidades" sea nulo
+                            producto.setUnidades(0); // O algún otro valor predeterminado
+                        }                        producto.setEntradaMercancia(document.getString("Fecha de entrada"));
+                        producto.setFichaTecnica(document.getString("Ficha tecnica:"));
+                        producto.setPrecio(document.getDouble("Precio"));
 
                         // Agregar el producto a la lista
                         productosList.add(producto);
@@ -103,14 +113,73 @@ public class InformeProductos {
             // Agregar encabezados de la tabla
             table.addCell(new Cell().add(new Paragraph("EAN")));
             table.addCell(new Cell().add(new Paragraph("Nombre")));
+            table.addCell(new Cell().add(new Paragraph("Unidades")));
+            table.addCell(new Cell().add(new Paragraph("Fecha de entrada")));
             table.addCell(new Cell().add(new Paragraph("Marca")));
+            table.addCell(new Cell().add(new Paragraph("Precio")));
+            table.addCell(new Cell().add(new Paragraph("Ficha técnica")));
 
             // Agregar los detalles de cada producto a la tabla
+            // Agregar los detalles de cada producto a la tabla
             for (Productos producto : productosList) {
-                table.addCell(new Cell().add(new Paragraph(producto.getEan())));
-                table.addCell(new Cell().add(new Paragraph(producto.getNombre())));
-                table.addCell(new Cell().add(new Paragraph(producto.getMarca())));
+                // Verifica si el EAN es nulo o no válido
+                String ean = producto.getEan();
+                if (ean != null && !ean.isEmpty()) {
+                    table.addCell(new Cell().add(new Paragraph(ean)));
+                } else {
+                    table.addCell(new Cell().add(new Paragraph("EAN no disponible")));
+                }
+
+                // Verifica si el nombre es nulo o no válido
+                String nombre = producto.getNombre();
+                if (nombre != null && !nombre.isEmpty()) {
+                    table.addCell(new Cell().add(new Paragraph(nombre)));
+                } else {
+                    table.addCell(new Cell().add(new Paragraph("Nombre no disponible")));
+                }
+
+                // Verifica si las unidades son nulas o no válidas
+                int unidades = producto.getUnidades();
+                if (unidades != 0) {
+                    table.addCell(new Cell().add(new Paragraph(String.valueOf(unidades))));
+                } else {
+                    table.addCell(new Cell().add(new Paragraph("Unidades no disponibles")));
+                }
+
+                // Verifica si la fecha de entrada es nula o no válida
+                String entradaMercancia = producto.getEntradaMercancia();
+                if (entradaMercancia != null && !entradaMercancia.isEmpty()) {
+                    table.addCell(new Cell().add(new Paragraph(entradaMercancia)));
+                } else {
+                    table.addCell(new Cell().add(new Paragraph("Fecha de entrada no disponible")));
+                }
+
+                // Verifica si la marca es nula o no válida
+                String marca = producto.getMarca();
+                if (marca != null && !marca.isEmpty()) {
+                    table.addCell(new Cell().add(new Paragraph(marca)));
+                } else {
+                    table.addCell(new Cell().add(new Paragraph("Marca no disponible")));
+                }
+
+                // Verifica si el precio es nulo o no válido
+                Double precio = producto.getPrecio();
+                if (precio != null) {
+                    table.addCell(new Cell().add(new Paragraph(String.valueOf(precio))));
+                } else {
+                    table.addCell(new Cell().add(new Paragraph("Precio no disponible")));
+                }
+
+                // Verifica si la ficha técnica es nula o no válida
+                String fichaTecnica = producto.getFichaTecnica();
+                if (fichaTecnica != null && !fichaTecnica.isEmpty()) {
+                    table.addCell(new Cell().add(new Paragraph(fichaTecnica)));
+                } else {
+                    table.addCell(new Cell().add(new Paragraph("Ficha técnica no disponible")));
+                }
             }
+
+
 
             // Agregar la tabla al documento
             pdfDocument.add(table);
