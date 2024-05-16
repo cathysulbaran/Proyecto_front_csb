@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -104,12 +105,15 @@ public class Adaptador_ventas extends RecyclerView.Adapter<Adaptador_ventas.Prod
         TextView nombre, cantidad, precio;
         CheckBox checkBox;
 
+        ImageView sumar, restar ;
+
         public ProductoViewHolder(@NonNull View itemView) {
             super(itemView);
             nombre = itemView.findViewById(R.id.textNombre);
             cantidad = itemView.findViewById(R.id.textCantidad);
             precio = itemView.findViewById(R.id.textPrecio);
-            checkBox = itemView.findViewById(R.id.checkBox);
+            sumar = itemView.findViewById(R.id.btSumar);
+            restar = itemView.findViewById(R.id.btRestar);
 
         }
     }

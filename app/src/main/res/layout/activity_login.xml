@@ -16,9 +16,9 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:src="@drawable/icon_account_circle">
+            android:layout_width="207dp"
+            android:layout_height="176dp"
+            android:src="@drawable/login">
 
         </ImageView>
 

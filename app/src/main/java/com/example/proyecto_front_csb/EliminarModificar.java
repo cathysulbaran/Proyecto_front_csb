@@ -58,12 +58,13 @@ public class EliminarModificar extends AppCompatActivity {
         volver.setOnClickListener(v -> volver());
     }
 
-    public void consultaArticulo(String nombre){
+    public void consultaArticulo(String nombre) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference productoRef = db.collection("Productos");
-        String findeRango = nombre + "\uf8ff";
-        Query productoEspecifico = productoRef.whereGreaterThanOrEqualTo("Nombre", nombre).whereLessThan("Nombre", findeRango);
-        //Query productoEspecifico = productoRef.whereEqualTo("Nombre", nombre);
+        String nombreMinusculas = nombre.toLowerCase();
+        String findeRango = nombreMinusculas + "\uf8ff";
+        Query productoEspecifico = productoRef.whereGreaterThanOrEqualTo("Nombre", nombreMinusculas)
+                .whereLessThan("Nombre", findeRango);
         List<Productos> productos = new ArrayList<>();
         productoEspecifico.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override

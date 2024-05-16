@@ -42,7 +42,7 @@ import java.util.Map;
 public class Ventas extends AppCompatActivity {
 
     private EditText ean;
-    private ImageView volver, verCarrito, buscar;
+    private ImageView volver, verCarrito, buscar, barras;
     private RecyclerView recyclerView;
     private Adaptador_ventas Adaptador_ventas;
     private ArrayList<Productos> productosSeleccionados; // Lista para almacenar productos seleccionados
@@ -58,6 +58,7 @@ public class Ventas extends AppCompatActivity {
         verCarrito = findViewById(R.id.btVerCarrito); // Inicializar el botón para ver el carrito
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        barras = findViewById(R.id.btEAN);
 
         productosSeleccionados = new ArrayList<>(); // Inicializar la lista de productos seleccionados
 

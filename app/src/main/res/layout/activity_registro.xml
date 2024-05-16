@@ -10,28 +10,23 @@
     android:gravity="center"
     >
 
+    <ImageView
+        android:id="@+id/btAtras"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="45dp"
+        android:background="@drawable/ic_back"
+        android:text="Volver" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/icon_account_circle">
-        </ImageView>
-        <TextView
-            android:id="@+id/tv_texto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Registro de usuario"
-            android:layout_marginTop="10dp"
-            android:textAlignment="center"
-            android:textColor="@color/color_claro"
-            android:textSize="26sp"
-            android:textStyle="bold|italic"
-
-            />
+            android:layout_width="191dp"
+            android:layout_height="145dp"
+            android:src="@drawable/registro"></ImageView>
 
     </LinearLayout>
 
@@ -120,16 +115,6 @@
         android:textColor="@color/white"
         android:textSize="18sp"
          />
-
-    <Button
-        android:id="@+id/btAtras"
-        android:layout_width="196dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/boton_oscuro"
-        android:text="Atras"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
 
 
 </LinearLayout>

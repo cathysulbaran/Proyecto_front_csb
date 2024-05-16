@@ -62,15 +62,15 @@
 
             <EditText
                 android:id="@+id/edtEANConsulta"
-                android:layout_width="340dp"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textSize="15sp"
-                android:inputType="number"
+                android:layout_width="275dp"
+                android:layout_height="match_parent"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/rounded_corner"
-                android:textColor="@color/color_claro"
+                android:inputType="number"
                 android:maxLength="13"
+                android:padding="10dp"
+                android:textColor="@color/color_claro"
+                android:textSize="15sp"
 
                 />
 
@@ -78,9 +78,15 @@
                 android:id="@+id/btBuscar"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/ic_buscar"
+                android:background="@drawable/lupa"
 
                 />
+
+            <ImageView
+                android:id="@+id/btEAN"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/barcode" />
         </LinearLayout>
 
 
@@ -93,17 +99,6 @@
             android:gravity="center_horizontal">
 
 
-
-
-            <Button
-                android:id="@+id/btEAN"
-                android:layout_width="104dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/ScrollView"
-                android:layout_centerHorizontal="true"
-                android:backgroundTint="@color/color_claro"
-                android:textColor="@color/black"
-                android:text="Escaneo" />
         </LinearLayout>
 
     </LinearLayout>

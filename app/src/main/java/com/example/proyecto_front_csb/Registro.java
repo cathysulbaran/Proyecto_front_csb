@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,7 +22,9 @@ public class Registro extends AppCompatActivity {
     private EditText edt_username;
     private EditText edt_contrasena;
     private EditText edt_correo;
-    private Button bt_crear, bt_atras;
+    private Button bt_crear;
+
+    private ImageView bt_atras;
 
 
 

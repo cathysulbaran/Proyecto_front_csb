@@ -28,8 +28,7 @@ public class ConsultaArticulo extends AppCompatActivity {
 
     private BarcodeScannerHelper barcodeScannerHelper;
 
-    private ImageView btBuscar, btVolver;
-    private Button btEAN;
+    private ImageView btBuscar, btVolver, btEAN;
     private EditText edtEANConsulta;
     private TableLayout table_articulos;
 
