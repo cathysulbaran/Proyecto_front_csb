@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -49,29 +50,16 @@ public class InformeProductos {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Productos producto = new Productos();
 
-                        // Convertir el campo 'EAN' a String si es necesario
-                        if (document.contains("EAN")) {
-                            Object eanObject = document.get("EAN");
-                            if (eanObject instanceof Long) {
-                                producto.setEan(String.valueOf((Long) eanObject));
-                            } else if (eanObject instanceof String) {
-                                producto.setEan((String) eanObject);
-                            }
-                        }
+                        producto.setEan(document.getId());
 
                         // Asignar otros campos del producto
-                        producto.setNombre(document.getString("nombre"));
-                        producto.setMarca(document.getString("marca"));
+                        producto.setNombre(document.getString("Nombre"));
+                        producto.setMarca(document.getString("Marca"));
                         // Convertir el valor de tipo String a int y asignarlo a unidades
-                        String unidadesString = document.getString("unidades");
-                        if (unidadesString != null) {
-                            int unidades = Integer.parseInt(unidadesString);
-                            producto.setUnidades(unidades);
-                        } else {
-                            // Manejar el caso en el que el valor de "unidades" sea nulo
-                            producto.setUnidades(0); // O algún otro valor predeterminado
-                        }                        producto.setEntradaMercancia(document.getString("Fecha de entrada"));
-                        producto.setFichaTecnica(document.getString("Ficha tecnica:"));
+                        int unidades = document.getLong("Unidades").intValue();
+                        producto.setUnidades(unidades);
+                        producto.setEntradaMercancia(document.getString("entradaMercancia"));
+                        producto.setFichaTecnica(document.getString("FichaTecnica"));
                         producto.setPrecio(document.getDouble("Precio"));
 
                         // Agregar el producto a la lista
@@ -99,6 +87,7 @@ public class InformeProductos {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             PdfWriter writer = new PdfWriter(file);
             PdfDocument pdf = new PdfDocument(writer);
+            pdf.setDefaultPageSize(PageSize.A4.rotate());
             Document pdfDocument = new Document(pdf);
 
             // Agregar encabezado con el nombre de la empresa
@@ -106,18 +95,18 @@ public class InformeProductos {
             pdfDocument.add(new Paragraph("\n\n")); // Espacio después del encabezado
 
             // Agregar tabla con los detalles de cada producto
-            float[] columnWidths = {100f, 200f, 200f};
+            float[] columnWidths = {100f, 200f, 20f, 80f, 100f, 20f, 200f};
             Table table = new Table(columnWidths);
             table.setHorizontalAlignment(HorizontalAlignment.CENTER);
 
             // Agregar encabezados de la tabla
-            table.addCell(new Cell().add(new Paragraph("EAN")));
-            table.addCell(new Cell().add(new Paragraph("Nombre")));
-            table.addCell(new Cell().add(new Paragraph("Unidades")));
-            table.addCell(new Cell().add(new Paragraph("Fecha de entrada")));
-            table.addCell(new Cell().add(new Paragraph("Marca")));
-            table.addCell(new Cell().add(new Paragraph("Precio")));
-            table.addCell(new Cell().add(new Paragraph("Ficha técnica")));
+            table.addCell(new Cell().add(new Paragraph("EAN").setBold()));
+            table.addCell(new Cell().add(new Paragraph("Nombre").setBold()));
+            table.addCell(new Cell().add(new Paragraph("Unidades").setBold()));
+            table.addCell(new Cell().add(new Paragraph("Fecha de entrada").setBold()));
+            table.addCell(new Cell().add(new Paragraph("Marca").setBold()));
+            table.addCell(new Cell().add(new Paragraph("Precio").setBold()));
+            table.addCell(new Cell().add(new Paragraph("Ficha técnica").setBold()));
 
             // Agregar los detalles de cada producto a la tabla
             // Agregar los detalles de cada producto a la tabla
@@ -137,15 +126,8 @@ public class InformeProductos {
                 } else {
                     table.addCell(new Cell().add(new Paragraph("Nombre no disponible")));
                 }
-
-                // Verifica si las unidades son nulas o no válidas
                 int unidades = producto.getUnidades();
-                if (unidades != 0) {
-                    table.addCell(new Cell().add(new Paragraph(String.valueOf(unidades))));
-                } else {
-                    table.addCell(new Cell().add(new Paragraph("Unidades no disponibles")));
-                }
-
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(unidades))));
                 // Verifica si la fecha de entrada es nula o no válida
                 String entradaMercancia = producto.getEntradaMercancia();
                 if (entradaMercancia != null && !entradaMercancia.isEmpty()) {

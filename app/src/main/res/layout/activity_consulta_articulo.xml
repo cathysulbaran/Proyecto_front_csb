@@ -62,7 +62,7 @@
 
             <EditText
                 android:id="@+id/edtEANConsulta"
-                android:layout_width="315dp"
+                android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textSize="15sp"
@@ -71,6 +71,7 @@
                 android:background="@drawable/rounded_corner"
                 android:textColor="@color/color_claro"
                 android:maxLength="13"
+
                 />
 
             <ImageView
