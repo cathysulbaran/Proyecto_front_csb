@@ -44,7 +44,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/prueba"
+            android:id="@+id/btConsultaArticulo"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="12dp"
@@ -52,7 +52,6 @@
             app:cardElevation="12dp">
 
             <LinearLayout
-                android:id="@+id/btConsulta"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -77,6 +76,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btGenerarInforme"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="12dp"
@@ -84,7 +84,6 @@
             app:cardElevation="12dp">
 
             <LinearLayout
-                android:id="@+id/btGenerarInforme"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -109,6 +108,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btVentas"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="12dp"
@@ -116,7 +116,6 @@
             app:cardElevation="12dp">
 
             <LinearLayout
-                android:id="@+id/btVentas"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -141,6 +140,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btEliminarModificar"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="12dp"
@@ -148,7 +148,6 @@
             app:cardElevation="12dp">
 
             <LinearLayout
-                android:id="@+id/btEliminarModificar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -173,6 +172,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btRegistroUsuarios"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="12dp"
@@ -180,7 +180,6 @@
             app:cardElevation="12dp">
 
             <LinearLayout
-                android:id="@+id/btRegistroUsuarios"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -205,6 +204,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btRegistro"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="12dp"
@@ -212,7 +212,6 @@
             app:cardElevation="12dp">
 
             <LinearLayout
-                android:id="@+id/btRegistro"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">

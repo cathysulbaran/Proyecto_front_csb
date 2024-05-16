@@ -2,6 +2,7 @@ package com.example.proyecto_front_csb;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -16,7 +17,7 @@ import android.widget.LinearLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
-    private LinearLayout btIniciarConsulta, btIniciarRegistro, btIniciarVentas, btEliminarModificar, btRegistrarUsuarios, btnGenerarInforme;
+    private CardView btIniciarConsulta, btIniciarRegistro, btIniciarVentas, btEliminarModificar, btRegistrarUsuarios, btnGenerarInforme;
 
     private static final int REQUEST_CODE_CREATE_FILE = 123;
 
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         btEliminarModificar = findViewById(R.id.btEliminarModificar);
         btIniciarRegistro = findViewById(R.id.btRegistro);
-        btIniciarConsulta = findViewById(R.id.btConsulta);
+        btIniciarConsulta = findViewById(R.id.btConsultaArticulo);
         btRegistrarUsuarios = findViewById(R.id.btRegistroUsuarios);
         btnGenerarInforme = findViewById(R.id.btGenerarInforme);
         btIniciarVentas = findViewById(R.id.btVentas);
