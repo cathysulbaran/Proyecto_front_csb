@@ -26,9 +26,6 @@
             android:name=".Adaptador_ventas"
             android:exported="false" />
         <activity
-            android:name=".adaptador_ventas"
-            android:exported="false" />
-        <activity
             android:name=".CarritoActivity"
             android:exported="false" />
         <activity
