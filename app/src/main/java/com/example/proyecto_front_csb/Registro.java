@@ -88,7 +88,7 @@ public class Registro extends AppCompatActivity {
     }
 
     public void Inicio_atras(){
-        Intent intent = new Intent(this, Login.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 

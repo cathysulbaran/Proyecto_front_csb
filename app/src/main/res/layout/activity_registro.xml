@@ -7,28 +7,37 @@
     tools:context=".Registro"
     android:background="@drawable/fondo_degradado"
     android:orientation="vertical"
-    android:gravity="center"
+    android:padding="10dp"
     >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/btAtras"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="45dp"
-        android:background="@drawable/ic_back"
-        android:text="Volver" />
+        <ImageView
+            android:id="@+id/btAtras"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+
+            android:background="@drawable/ic_back"
+            android:text="Volver" />
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal">
 
         <ImageView
             android:layout_width="191dp"
             android:layout_height="145dp"
             android:src="@drawable/registro"></ImageView>
 
-    </LinearLayout>
 
     <TextView
         android:id="@+id/textViewNombre"
@@ -116,5 +125,6 @@
         android:textSize="18sp"
          />
 
+    </LinearLayout>
 
 </LinearLayout>

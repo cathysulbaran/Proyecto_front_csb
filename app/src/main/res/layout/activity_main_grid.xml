@@ -76,6 +76,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+
         <androidx.cardview.widget.CardView
             android:id="@+id/btGenerarInforme"
             android:layout_width="150dp"
@@ -168,7 +169,7 @@
                     android:layout_gravity="center_horizontal"
                     android:text="Modificar/Eliminar"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="17sp"
                     android:textStyle="bold">
 
                 </TextView>

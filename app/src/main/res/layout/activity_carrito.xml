@@ -9,12 +9,12 @@
         android:id="@+id/txtTitulo3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Listado de articulos"
-        android:textSize="26dp"
-        android:textStyle="bold|italic"
-        android:textColor="@color/color_claro"
+        android:layout_marginTop="20dp"
+        android:text="Resumen Compra"
         android:textAlignment="center"
-        android:layout_marginTop="20dp"/>
+        android:textColor="@color/color_claro"
+        android:textSize="26dp"
+        android:textStyle="bold|italic" />
 
     <LinearLayout
         android:id="@+id/linearlistado"

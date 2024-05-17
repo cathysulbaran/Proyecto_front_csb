@@ -62,21 +62,8 @@ public class Adaptador_ventas extends RecyclerView.Adapter<Adaptador_ventas.Prod
         String precio = Double.toString(producto.getPrecio());
         holder.precio.setText("Precio: " + precio);
 
-        // Establecer el estado del CheckBox según si el producto está seleccionado o no
-        holder.checkBox.setChecked(producto.isSelected());
-
+        // Establecer el estado del
         // Listener para marcar/desmarcar el producto como seleccionado
-        holder.checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                producto.setSelected(holder.checkBox.isChecked()); // Actualiza el estado seleccionado del producto
-                if (holder.checkBox.isChecked()) {
-                    productosSeleccionados.add(producto); // Agrega el producto a la lista de seleccionados
-                } else {
-                    productosSeleccionados.remove(producto); // Remueve el producto de la lista de seleccionados
-                }
-            }
-        });
     }
 
 
@@ -103,7 +90,6 @@ public class Adaptador_ventas extends RecyclerView.Adapter<Adaptador_ventas.Prod
 
     public static class ProductoViewHolder extends RecyclerView.ViewHolder{
         TextView nombre, cantidad, precio;
-        CheckBox checkBox;
 
         ImageView sumar, restar ;
 

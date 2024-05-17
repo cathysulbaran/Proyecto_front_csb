@@ -121,7 +121,7 @@ public class CarritoActivity extends AppCompatActivity {
             Document pdfDocument = new Document(pdf, PageSize.A4);
 
             // Obtener el objeto ImageData directamente desde el recurso raw
-            InputStream inputStream = getResources().openRawResource(R.raw.factura);
+            InputStream inputStream = getResources().openRawResource(R.raw.banner);
 
             // Leer la imagen como un array de bytes
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

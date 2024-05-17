@@ -56,25 +56,39 @@
         android:textSize="15dp"
         android:textColor="@color/color_claro" />
 
-    <EditText
-        android:id="@+id/edtEAN"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:background="@drawable/rounded_corner"
-        android:textColor="@color/color_claro"
-        android:inputType="number"
-        android:padding="8dp"
-        android:maxLength="13"
-        android:layout_below="@id/textView4"
-        />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TextView
+            <EditText
+                android:id="@+id/edtEAN"
+                android:layout_width="349dp"
+                android:layout_height="match_parent"
+                android:layout_below="@id/textView4"
+                android:background="@drawable/rounded_corner"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="13"
+                android:padding="8dp"
+                android:textColor="@color/color_claro" />
+
+
+            <ImageView
+                android:id="@+id/btCodigoBarras"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/barcode" />
+
+        </LinearLayout>
+
+
+        <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nombre"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textSize="15dp"
         android:textColor="@color/color_claro"
         android:layout_below="@id/edtEAN"/>
@@ -96,7 +110,7 @@
         android:layout_height="wrap_content"
         android:text="Marca"
         android:textSize="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/color_claro"
         />
 
@@ -116,7 +130,7 @@
         android:layout_height="wrap_content"
         android:text="Ficha tecnica"
         android:textSize="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/color_claro" />
 
     <EditText
@@ -134,7 +148,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Stock Disponible"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/color_claro"
         android:textSize="15dp" />
 
@@ -153,7 +167,7 @@
         android:layout_width="47dp"
         android:layout_height="27dp"
         android:text="Precio"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/color_claro"
         android:textSize="15dp" />
     <EditText
@@ -172,7 +186,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Fecha de entrada"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/color_claro"
         android:textSize="15dp" />
 
@@ -185,6 +199,7 @@
         android:inputType="date"
         android:padding="8dp"
         android:background="@drawable/rounded_corner" />
+
     </LinearLayout>
 
 <LinearLayout
@@ -192,7 +207,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_centerHorizontal="true"
-    android:layout_marginTop="40dp"
+    android:layout_marginTop="30dp"
     android:layout_below="@+id/linear01registro">
 
     <Button
@@ -205,15 +220,6 @@
         android:textColor="@color/white" />
 
 
-    <Button
-        android:id="@+id/btCodigoBarras"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Escaneo"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/color_claro"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="11dp" />
 
 </LinearLayout>
 
