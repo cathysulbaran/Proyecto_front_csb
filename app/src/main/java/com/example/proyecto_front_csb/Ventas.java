@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.proyecto_front_csb.databinding.ActivityConsultaArticuloBinding;
+import com.example.proyecto_front_csb.databinding.ActivityVentasBinding;
 import com.example.proyecto_front_csb.model.DataBase;
 import com.example.proyecto_front_csb.model.Productos;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,9 +43,12 @@ import java.util.Map;
 public class Ventas extends AppCompatActivity {
 
     private EditText ean;
-    private ImageView volver, verCarrito, buscar, barras;
+    private ImageView volver, verCarrito, buscar, btEAN;
     private RecyclerView recyclerView;
     private Adaptador_ventas Adaptador_ventas;
+    ActivityVentasBinding binding;
+
+    private BarcodeScannerHelper barcodeScannerHelper;
     private ArrayList<Productos> productosSeleccionados; // Lista para almacenar productos seleccionados
 
     @Override
@@ -52,13 +56,25 @@ public class Ventas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ventas);
 
+        binding = ActivityVentasBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         ean = findViewById(R.id.edtEAN);
         buscar = findViewById(R.id.btBuscar);
         volver = findViewById(R.id.btVolver);
         verCarrito = findViewById(R.id.btVerCarrito); // Inicializar el botón para ver el carrito
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        barras = findViewById(R.id.btEAN);
+        btEAN = findViewById(R.id.btEAN);
+
+        barcodeScannerHelper = new BarcodeScannerHelper(this);
+
+        btEAN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                barcodeScannerHelper.startScanner();
+            }
+        });
 
         productosSeleccionados = new ArrayList<>(); // Inicializar la lista de productos seleccionados
 
@@ -84,6 +100,16 @@ public class Ventas extends AppCompatActivity {
         verCarrito.setOnClickListener(v -> verCarrito());
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        barcodeScannerHelper.handleScanResult(data, new BarcodeScannerHelper.OnScanResultListener() {
+            @Override
+            public void onScanResult(String contents) {
+                ean.setText(contents);
+            }
+        });
+    }
     private boolean buscarProductosRepetidos(String ean, List<Productos> productos){
         boolean eanExiste = false;
         for(Productos producto : productos){

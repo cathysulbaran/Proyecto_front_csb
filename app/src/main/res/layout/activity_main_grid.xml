@@ -29,15 +29,15 @@
 
 
     <GridLayout
-        android:layout_width="332dp"
-        android:layout_height="541dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/textView11"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="100dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
         android:columnCount="2"
         android:rowCount="2">

@@ -6,12 +6,14 @@ import static java.security.AccessController.getContext;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -58,6 +60,8 @@ public class CarritoActivity extends AppCompatActivity {
     private Adaptador_ventas Adaptador_ventas;
     private TextView txtResumen;
     private Button btConfirmarCompra;
+
+    private ImageView btAtras;
     private ArrayList<Productos> productosSeleccionados = new ArrayList<>();
 
     EditText usuario, telefono, direccion;
@@ -75,6 +79,7 @@ public class CarritoActivity extends AppCompatActivity {
         usuario = findViewById(R.id.edtUsuario);
         telefono = findViewById(R.id.edtTelefonoUsuario);
         direccion = findViewById(R.id.edtDireccion);
+        btAtras = findViewById(R.id.btVolver);
 
 
         recyclerViewProductos = findViewById(R.id.recyclerViewProductos);
@@ -100,6 +105,9 @@ public class CarritoActivity extends AppCompatActivity {
                 generar();
             }
         });
+
+        btAtras.setOnClickListener(v -> volver());
+
     }
 
     public void generar(){
@@ -255,5 +263,8 @@ public class CarritoActivity extends AppCompatActivity {
         pdfDocument.add(new Paragraph("Dirección: " + direccionUsuario));
     }
 
-
+    public void volver() {
+        Intent intent = new Intent(this, Ventas.class);
+        startActivity(intent);
+    }
 }
