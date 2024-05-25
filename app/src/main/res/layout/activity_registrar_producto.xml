@@ -63,7 +63,7 @@
 
             <EditText
                 android:id="@+id/edtEAN"
-                android:layout_width="349dp"
+                android:layout_width="335dp"
                 android:layout_height="match_parent"
                 android:layout_below="@id/textView4"
                 android:background="@drawable/rounded_corner"

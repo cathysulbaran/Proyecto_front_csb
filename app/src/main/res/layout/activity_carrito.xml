@@ -111,6 +111,7 @@
             android:textColor="@color/color_claro"
             android:inputType="number"
             android:padding="8dp"
+            android:maxLength="9"
             />
         <TextView
             android:id="@+id/txtDireccion"

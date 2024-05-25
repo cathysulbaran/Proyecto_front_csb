@@ -117,6 +117,23 @@ public class CarritoActivity extends AppCompatActivity {
 
 
     public void generarInformePDF(List<Productos> productosSeleccionados) {
+
+        String usuarioTexto = usuario.getText().toString().trim();
+        String telefonoTexto = telefono.getText().toString().trim();
+        String direccionTexto = direccion.getText().toString().trim();
+
+        // Verificar que los campos obligatorios no estén vacíos
+        if (usuarioTexto.isEmpty() || telefonoTexto.isEmpty() || direccionTexto.isEmpty()) {
+            Toast.makeText(context, "El nombre, el teléfono y la dirección son obligatorios.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Verificar que el número de teléfono tenga 9 dígitos
+        if (telefonoTexto.length() != 9) {
+            Toast.makeText(context, "El número de teléfono debe tener 9 dígitos.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Especifica el nombre del archivo PDF generado
         String fileName = "Ticket de venta.pdf";
         File directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
@@ -145,14 +162,19 @@ public class CarritoActivity extends AppCompatActivity {
 
             // Agregar encabezado (imagen) al documento (parte superior)
             com.itextpdf.layout.element.Image imagenEncabezado = new com.itextpdf.layout.element.Image(imageDataEncabezado);
-            imagenEncabezado.setWidth(PageSize.A4.getWidth()); // Ajustar el ancho al ancho de la página
+
+            // Ajustar el tamaño de la imagen manualmente
+            float desiredWidth = PageSize.A4.getWidth() - pdfDocument.getLeftMargin() - pdfDocument.getRightMargin();
+            float desiredHeight = 100; // Ajusta este valor según necesites
+            imagenEncabezado.scaleToFit(desiredWidth, desiredHeight);
+            imagenEncabezado.setHorizontalAlignment(HorizontalAlignment.CENTER);
             pdfDocument.add(imagenEncabezado);
 
             // Agregar encabezado al documento (parte superior)
-            pdfDocument.add(new Paragraph("Empresa XYZ").setBold().setFontSize(18).setTextAlignment(TextAlignment.CENTER));
+            pdfDocument.add(new Paragraph("INVETORYGENIE").setBold().setFontSize(18).setTextAlignment(TextAlignment.CENTER));
             pdfDocument.add(new Paragraph("Dirección: Calle Principal, Ciudad, País").setFontSize(12).setTextAlignment(TextAlignment.CENTER));
             pdfDocument.add(new Paragraph("Teléfono: +123456789").setFontSize(12).setTextAlignment(TextAlignment.CENTER));
-            pdfDocument.add(new Paragraph("Correo electrónico: info@empresa.com").setFontSize(12).setTextAlignment(TextAlignment.CENTER));
+            pdfDocument.add(new Paragraph("Correo electrónico: invetorygenie@empresa.com").setFontSize(12).setTextAlignment(TextAlignment.CENTER));
             pdfDocument.add(new Paragraph("\n")); // Espacio entre el encabezado y el contenido principal
 
             // Crear tabla para los detalles de los productos
@@ -190,16 +212,17 @@ public class CarritoActivity extends AppCompatActivity {
             informacionPago.add("Fecha de pago: 01/01/2023");
             pdfDocument.add(informacionPago);
 
-            // Agregar sección del total antes del IVA (abajo a la izquierda)
-            pdfDocument.add(new Paragraph("\n").setTextAlignment(TextAlignment.RIGHT));
+            // Agregar espacio para mover el total a la parte inferior de la página
+            pdfDocument.add(new Paragraph("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"));
+
+            // Agregar sección del total antes del IVA (abajo a la derecha)
             Paragraph totalAntesIVA = new Paragraph();
-            totalAntesIVA.add("Total antes de IVA: " + total);
+            totalAntesIVA.add("Total antes de IVA: €" + total).setTextAlignment(TextAlignment.RIGHT);
             pdfDocument.add(totalAntesIVA);
 
             // Agregar sección del IVA (abajo a la derecha)
-            pdfDocument.add(new Paragraph("\n").setTextAlignment(TextAlignment.RIGHT));
             Paragraph iva = new Paragraph();
-            iva.add("IVA (21%): €" + (total * 0.21f));
+            iva.add("IVA (21%): €" + (total * 0.21f)).setTextAlignment(TextAlignment.RIGHT);
             pdfDocument.add(iva);
 
             // Formatear el total a dos decimales y con el símbolo del euro
@@ -210,12 +233,11 @@ public class CarritoActivity extends AppCompatActivity {
 
             // Agregar sección del total final (abajo a la derecha)
             Paragraph totalPago = new Paragraph();
-            totalPago.add("Total a pagar: " + totalFormateado).setBold();
+            totalPago.add("Total a pagar: " + totalFormateado).setBold().setTextAlignment(TextAlignment.RIGHT);
             pdfDocument.add(totalPago);
 
             // Cerrar el documento
             pdfDocument.close();
-
 
             // Mostrar un mensaje de éxito
             Toast.makeText(context, "Informe generado correctamente en: " + file.getParentFile(), Toast.LENGTH_SHORT).show();
@@ -224,6 +246,8 @@ public class CarritoActivity extends AppCompatActivity {
             Toast.makeText(context, "Error al guardar el informe de productos", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
     // Método para calcular el total de la compra
     private float calcularTotal(List<Productos> productos) {
@@ -250,18 +274,7 @@ public class CarritoActivity extends AppCompatActivity {
         txtResumen.setText(resumen.toString());
     }
 
-    private void obtenerDatosUsuario(Document pdfDocument) {
 
-        String nombreUsuario = usuario.getText().toString();
-        String telefonoUsuario = telefono.getText().toString();
-        String direccionUsuario = direccion.getText().toString();
-
-        // Mostrar los datos del usuario en el informe de compra
-        pdfDocument.add(new Paragraph("Datos del Usuario:"));
-        pdfDocument.add(new Paragraph("Nombre: " + nombreUsuario));
-        pdfDocument.add(new Paragraph("Teléfono: " + telefonoUsuario));
-        pdfDocument.add(new Paragraph("Dirección: " + direccionUsuario));
-    }
 
     public void volver() {
         Intent intent = new Intent(this, Ventas.class);
