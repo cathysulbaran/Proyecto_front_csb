@@ -57,13 +57,28 @@ public class Adaptador_ventas extends RecyclerView.Adapter<Adaptador_ventas.Prod
     public void onBindViewHolder(@NonNull ProductoViewHolder holder, int position) {
         Productos producto = productos.get(position);
         holder.nombre.setText("Nombre: " + producto.getNombre());
-        String cantidad = Integer.toString(producto.getUnidades());
-        holder.cantidad.setText("Cantidad: " + cantidad);
+        String cantidad = Integer.toString(producto.getUnidadesTotales());
+        holder.cantidadTotal.setText("Cantidad disponible: " + cantidad);
         String precio = Double.toString(producto.getPrecio());
         holder.precio.setText("Precio: " + precio);
+        String unidades = Integer.toString(producto.getUnidades());
+        holder.sumar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                producto.setUnidades(producto.getUnidades()+1);
+                holder.cantidad.setText(Integer.toString(producto.getUnidades()));
 
-        // Establecer el estado del
-        // Listener para marcar/desmarcar el producto como seleccionado
+            }
+        });
+        holder.restar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                producto.setUnidades(producto.getUnidades()-1);
+                holder.cantidad.setText(Integer.toString(producto.getUnidades()));
+            }
+        });
+
+        holder.cantidad.setText(unidades);
     }
 
 
@@ -89,17 +104,19 @@ public class Adaptador_ventas extends RecyclerView.Adapter<Adaptador_ventas.Prod
     }
 
     public static class ProductoViewHolder extends RecyclerView.ViewHolder{
-        TextView nombre, cantidad, precio;
+        TextView nombre, cantidadTotal, precio, cantidad;
 
         ImageView sumar, restar ;
 
         public ProductoViewHolder(@NonNull View itemView) {
             super(itemView);
             nombre = itemView.findViewById(R.id.textNombre);
-            cantidad = itemView.findViewById(R.id.textCantidad);
+            cantidadTotal = itemView.findViewById(R.id.textCantidad);
             precio = itemView.findViewById(R.id.textPrecio);
             sumar = itemView.findViewById(R.id.btSumar);
             restar = itemView.findViewById(R.id.btRestar);
+            cantidad = itemView.findViewById(R.id.textCantidadValor);
+
 
         }
     }

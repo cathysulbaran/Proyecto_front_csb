@@ -26,28 +26,39 @@ public class Productos implements Serializable {
     private String Marca;
     private double Precio;
     private int Unidades;
+
+    private int unidadesTotales;
     private String entradaMercancia;
     private boolean isSelected;
 
 
-    public Productos(String  ean, String nombre, String fichaTecnica, String marca, double precio, int unidades, String entradaMercancia) {
+    public Productos(String  ean, String nombre, String fichaTecnica, String marca, double precio, int unidades, int unidadesTotales, String entradaMercancia) {
         this.EAN = ean;
         this.Nombre = nombre;
         this.FichaTecnica = fichaTecnica;
         this.Marca = marca;
         this.Precio = precio;
         this.Unidades = unidades;
+        this.unidadesTotales = unidadesTotales;
         this.entradaMercancia = entradaMercancia;
         this.isSelected = false;
+    }
+
+    public Productos(String EAN, String nombre, String fichaTecnica, String marca, double precio, int unidadesTotales, String entradaMercancia) {
+        this.EAN = EAN;
+        Nombre = nombre;
+        FichaTecnica = fichaTecnica;
+        Marca = marca;
+        Precio = precio;
+        this.unidadesTotales = unidadesTotales;
+        this.entradaMercancia = entradaMercancia;
     }
 
     public Productos(String nombre, double precio, int unidades) {
 
         this.Nombre = nombre;
-
         this.Precio = precio;
         this.Unidades = unidades;
-
         this.isSelected = false;
     }
 
@@ -117,6 +128,13 @@ public class Productos implements Serializable {
         isSelected = selected;
     }
 
+    public int getUnidadesTotales() {
+        return unidadesTotales;
+    }
+
+    public void setUnidadesTotales(int unidadesTotales) {
+        this.unidadesTotales = unidadesTotales;
+    }
 
     // Método necesario para Parcelable
     protected Productos(Parcel in) {

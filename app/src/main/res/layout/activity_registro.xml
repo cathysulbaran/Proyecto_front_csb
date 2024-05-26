@@ -48,7 +48,7 @@
         android:textColor="@color/color_claro"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="15dp"
         />
 
     <EditText
@@ -73,7 +73,7 @@
         android:textSize="20sp"
         android:textColor="@color/color_claro"
         android:textStyle="bold"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         />
 
     <EditText
@@ -98,7 +98,7 @@
         android:textSize="20sp"
         android:textColor="@color/color_claro"
         android:textStyle="bold"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         />
 
     <EditText
@@ -114,12 +114,36 @@
         android:textAlignment="center"
         android:textColor="@color/color_claro" />
 
-    <Button
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selecciona los privilegios:"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/color_claro"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp" />
+
+        <Spinner
+            android:id="@+id/spPrivilegios"
+            android:layout_width="291dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textColor="@color/color_claro" />
+
+        <Button
         android:id="@+id/btCrear"
         android:layout_width="191dp"
         android:layout_height="51dp"
         android:backgroundTint="@color/boton_oscuro"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="Registrar"
         android:textColor="@color/white"
         android:textSize="18sp"

@@ -137,18 +137,18 @@ public class Ventas extends AppCompatActivity {
                         String entrada = ds.getString("entradaMercancia");
 
                         if(unidades >0){
-                            Productos producto = new Productos(ean, nombre, fichaTecnica, marca, precio, unidades, entrada);
+                            //Creamos el producto con todas las unidades disponibles en stock
                             AlertDialog.Builder builder = new AlertDialog.Builder(Ventas.this);
                             builder.setTitle("Detalles del Artículo");
-                            builder.setMessage("Nombre: " + producto.getNombre() + "\n" +
-                                    "Precio: " + producto.getPrecio() + "\n" +
-                                    "Stock Disponible: " + producto.getUnidades());
+                            builder.setMessage("Nombre: " + nombre + "\n" +
+                                    "Precio: " + precio + "\n" +
+                                    "Stock Disponible: " + unidades);
                             builder.setPositiveButton("Agregar al carrito", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    //Comprobamos que los productos no esten repetidos para que a la hora de importarlo al carrito no aparezcan dos veces
                                     if(!buscarProductosRepetidos(ean, productosSeleccionados)){
-                                        Productos productoCarrito = producto;
-                                        productoCarrito.setUnidades(1);
+                                        Productos producto = new Productos(ean, nombre, fichaTecnica, marca, precio, 1, unidades, entrada);
                                         productosSeleccionados.add(producto);
 
                                     }else{

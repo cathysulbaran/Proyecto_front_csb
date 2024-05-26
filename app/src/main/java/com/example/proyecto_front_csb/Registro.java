@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,8 +25,8 @@ public class Registro extends AppCompatActivity {
     private EditText edt_contrasena;
     private EditText edt_correo;
     private Button bt_crear;
-
     private ImageView bt_atras;
+    private Spinner spPrivilegios;
 
 
 
@@ -39,6 +41,11 @@ public class Registro extends AppCompatActivity {
         edt_correo = findViewById(R.id.edtEmail);
         bt_crear = findViewById(R.id.btCrear);
         bt_atras = findViewById(R.id.btAtras);
+        spPrivilegios = findViewById(R.id.spPrivilegios);
+
+        String[] datosSpinner = new String[]{"Administrador", "Estandard"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datosSpinner);
+        spPrivilegios.setAdapter(adapter);
 
         bt_crear.setOnClickListener(new View.OnClickListener() {
             @Override
