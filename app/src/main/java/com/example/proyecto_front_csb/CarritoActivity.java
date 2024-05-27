@@ -27,15 +27,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Map;
+
 import com.example.proyecto_front_csb.model.Productos;
 
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -102,7 +106,16 @@ public class CarritoActivity extends AppCompatActivity {
         btConfirmarCompra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 generar();
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                for(Productos producto : productosSeleccionados){
+                    DocumentReference dr = db.collection("Productos").document(producto.getEan());
+                    Map<String, Object> modificarCantidad = new HashMap<>();
+                    modificarCantidad.put("Unidades", producto.getUnidadesTotales()-producto.getUnidades());
+                    dr.update(modificarCantidad);
+                }
+
             }
         });
 

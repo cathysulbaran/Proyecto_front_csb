@@ -137,7 +137,7 @@ public class Ventas extends AppCompatActivity {
                         String entrada = ds.getString("entradaMercancia");
 
                         if(unidades >0){
-                            //Creamos el producto con todas las unidades disponibles en stock
+                            //Creamos un dialog para confirmar la compra del producto
                             AlertDialog.Builder builder = new AlertDialog.Builder(Ventas.this);
                             builder.setTitle("Detalles del Artículo");
                             builder.setMessage("Nombre: " + nombre + "\n" +
@@ -161,9 +161,7 @@ public class Ventas extends AppCompatActivity {
                                     Adaptador_ventas = new Adaptador_ventas(productosSeleccionados);
                                     recyclerView.setAdapter(Adaptador_ventas);
 
-                                    Map<String, Object> modificarCantidad = new HashMap<>();
-                                    modificarCantidad.put("Unidades", unidades-1);
-                                    dr.update(modificarCantidad);
+
                                 }
                             });
 
@@ -173,6 +171,7 @@ public class Ventas extends AppCompatActivity {
                                     dialog.dismiss();
                                 }
                             });
+                            //Mostramos el dialog en pantalla
                             builder.create().show();
 
                         }else{
@@ -180,84 +179,18 @@ public class Ventas extends AppCompatActivity {
                         }
 
                     }else{
-
+                        Toast.makeText(Ventas.this, "El producto no esta registrado en la base de datos", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
 
     }
-    private void agregarAlCarrito(Productos producto) {
-        productosSeleccionados.add(producto);
-        Toast.makeText(this, "Producto agregado al carrito", Toast.LENGTH_SHORT).show();
-    }
-
-
-    private void AgregarCarritoConDialog(Productos producto) {
-        // Crea un diálogo para mostrar los detalles del artículo
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Detalles del Artículo");
-        builder.setMessage("Nombre: " + producto.getNombre() + "\n" +
-                "Precio: " + producto.getPrecio() + "\n" +
-                "Stock Disponible: " + producto.getUnidades());
-
-        builder.setPositiveButton("Agregar al Carrito", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Reducir el stock disponible
-                producto.setUnidades(producto.getUnidades() - 1);
-                // Agregar el producto al carrito
-                agregarAlCarrito(producto);
-                // Actualizar la interfaz de usuario
-                Adaptador_ventas = new Adaptador_ventas(productosSeleccionados);
-                recyclerView.setAdapter(Adaptador_ventas);
-            }
-        });
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.create().show();
-    }
-
-
     private void verCarrito() {
         Intent intent = new Intent(this, CarritoActivity.class);
         intent.putExtra("productosSeleccionados", productosSeleccionados);
         startActivity(intent);
     }
-
-    public void consultaArticulo(String ean) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference productoRef = db.collection("Productos");
-
-        productoRef.document(ean).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Productos producto = document.toObject(Productos.class);
-
-                        // Verificar si hay suficiente stock disponible
-                        if (producto.getUnidades() > 0) {
-                            // Agregar el producto al carrito
-                            AgregarCarritoConDialog(producto);
-                        } else {
-                            Toast.makeText(Ventas.this, "No hay suficiente stock disponible", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(Ventas.this, "No se encontró el producto", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(Ventas.this, "Error al buscar el producto", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
     public void volver() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
