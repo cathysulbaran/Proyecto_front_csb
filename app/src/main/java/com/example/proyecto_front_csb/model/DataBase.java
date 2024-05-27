@@ -139,7 +139,7 @@ public class DataBase {
         map.put("FichaTecnica", producto.getFichaTecnica());
         map.put("Marca", producto.getMarca());
         map.put("Precio", producto.getPrecio());
-        map.put("Unidades", producto.getUnidades());
+        map.put("Unidades", producto.getUnidadesTotales());
         map.put("entradaMercancia", producto.getEntradaMercancia());
 
         db.collection("Productos").document(producto.getEan()).update(map)

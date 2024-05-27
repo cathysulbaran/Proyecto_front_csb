@@ -99,7 +99,7 @@ public class EliminarModificar extends AppCompatActivity {
                             intent.putExtra("fichaTecnica", producto.getFichaTecnica());
                             intent.putExtra("marca", producto.getMarca());
                             intent.putExtra("precio", producto.getPrecio());
-                            intent.putExtra("unidades", producto.getUnidades());
+                            intent.putExtra("unidades", producto.getUnidadesTotales());
                             intent.putExtra("entradaMercancia", producto.getEntradaMercancia());
                             startActivity(intent);
                         }

@@ -42,7 +42,7 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.Prod
         Productos producto = productos.get(position);
         holder.nombre.setText("Nombre: "+ producto.getNombre());
         holder.ean.setText("EAN: "+ producto.getEan());
-        String cantidad = Integer.toString(producto.getUnidades());
+        String cantidad = Integer.toString(producto.getUnidadesTotales());
         holder.cantidad.setText("Cantidad: "+cantidad);
         String precio = Double.toString(producto.getPrecio());
         holder.precio.setText("Precio: "+ precio);

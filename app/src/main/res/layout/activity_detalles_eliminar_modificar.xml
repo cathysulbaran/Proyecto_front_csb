@@ -117,6 +117,30 @@
             />
 
         <TextView
+            android:id="@+id/textView28"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Unidades:"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/color_claro"
+            />
+
+        <EditText
+            android:id="@+id/etUnidades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="number"
+            android:text=""
+            android:textSize="14sp"
+            android:background="@drawable/rounded_corner"
+            android:padding="8dp"
+            android:textColor="@color/color_claro"
+            />
+
+        <TextView
             android:id="@+id/textView25"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

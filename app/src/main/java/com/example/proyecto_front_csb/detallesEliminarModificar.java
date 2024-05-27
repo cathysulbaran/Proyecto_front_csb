@@ -19,7 +19,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class detallesEliminarModificar extends AppCompatActivity {
-    private EditText etEan, etNombre, etMarca, etPrecio, etFecha;
+    private EditText etEan, etNombre, etMarca, etPrecio, etFecha, etUnidades;
     private Button btModificar, btGuardar, btCancelar, btEliminar;
     private ImageView btAtras;
 
@@ -44,6 +44,7 @@ public class detallesEliminarModificar extends AppCompatActivity {
         etEan = findViewById(R.id.etEan);
         etNombre = findViewById(R.id.etNombre);
         etMarca = findViewById(R.id.etMarca);
+        etUnidades = findViewById(R.id.etUnidades);
         etPrecio = findViewById(R.id.etPrecio);
         etFecha = findViewById(R.id.etFecha);
         btModificar = findViewById(R.id.btModificar);
@@ -55,6 +56,7 @@ public class detallesEliminarModificar extends AppCompatActivity {
         etEan.setText(ean);
         etNombre.setText(nombre);
         etMarca.setText(marca);
+        etUnidades.setText(Integer.toString(unidades));
         String precioStr = String.valueOf(precio);
         etPrecio.setText(precioStr);
         etFecha.setText(entradaMercancia);
@@ -104,6 +106,7 @@ public class detallesEliminarModificar extends AppCompatActivity {
         etMarca.setEnabled(true);
         etPrecio.setEnabled(true);
         etFecha.setEnabled(true);
+        etUnidades.setEnabled(true);
     }
 
     public void guardar(String ean, String fichaTecnica, int unidades){
@@ -111,9 +114,11 @@ public class detallesEliminarModificar extends AppCompatActivity {
         String marca = etMarca.getText().toString();
         String precioStr = etPrecio.getText().toString();
         double precio = Double.parseDouble(precioStr);
+        String unidadesStr = etUnidades.getText().toString();
+        int unidadesFinal = Integer.parseInt(unidadesStr);
         String entradaMercancia = etFecha.getText().toString();
 
-        Productos producto = new Productos(ean, nombre, fichaTecnica, marca, precio, unidades, entradaMercancia);
+        Productos producto = new Productos(ean, nombre, fichaTecnica, marca, precio, unidadesFinal, entradaMercancia);
         DataBase db = new DataBase();
         db.modificarProductos(this, producto);
 
@@ -126,6 +131,7 @@ public class detallesEliminarModificar extends AppCompatActivity {
         etMarca.setEnabled(false);
         etPrecio.setEnabled(false);
         etFecha.setEnabled(false);
+        etUnidades.setEnabled(false);
 
         btModificar.setEnabled(true);
         btModificar.setBackgroundTintList(colorStateOscuro);
