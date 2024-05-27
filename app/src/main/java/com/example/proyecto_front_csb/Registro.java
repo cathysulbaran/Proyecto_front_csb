@@ -102,6 +102,8 @@ public class Registro extends AppCompatActivity {
                                     FirebaseFirestore.getInstance().collection("Usuarios").document(user.getUid()).set(map);
                                     Toast.makeText(Registro.this, "Cuenta creada correctamente.", Toast.LENGTH_SHORT).show();
 
+                                    LimpiarCampos();
+
                                 }else{
                                     Toast.makeText(Registro.this, "Error al crear la cuenta de usuario.", Toast.LENGTH_SHORT).show();
                                 }
@@ -113,6 +115,12 @@ public class Registro extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    private void LimpiarCampos() {
+        edt_username.setText("");
+        edt_contrasena.setText("");
+        edt_correo.setText("");
     }
 
     public void Inicio_atras(){
