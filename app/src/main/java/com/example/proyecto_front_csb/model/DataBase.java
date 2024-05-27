@@ -31,7 +31,7 @@ public class DataBase {
             double precio = producto.getPrecio();
             String fichaTecnica = producto.getFichaTecnica();
             String marca = producto.getMarca();
-            int unidades = producto.getUnidades();
+            int unidades = producto.getUnidadesTotales();
             String fecha = producto.getEntradaMercancia();
             String Ean = producto.getEan();;
 
