@@ -8,9 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -33,6 +31,7 @@ public class EliminarModificar extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ProductosAdapter productoAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +45,10 @@ public class EliminarModificar extends AppCompatActivity {
         buscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nombreFinal = nombre.getText().toString();
-                if(nombreFinal.isEmpty()){
+                String nombreFinal = nombre.getText().toString().replaceAll("\\s", ""); // Eliminar espacios
+                if (nombreFinal.isEmpty()) {
                     nombre.setError("Has de rellenar el campo en el buscador");
-                }else{
+                } else {
                     consultaArticulo(nombreFinal);
                 }
             }
@@ -62,18 +61,16 @@ public class EliminarModificar extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference productoRef = db.collection("Productos");
         String nombreMinusculas = nombre.toLowerCase();
-        String findeRango = nombreMinusculas + "\uf8ff";
-        Query productoEspecifico = productoRef.whereGreaterThanOrEqualTo("Nombre", nombreMinusculas)
-                .whereLessThan("Nombre", findeRango);
         List<Productos> productos = new ArrayList<>();
-        productoEspecifico.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+        productoRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    if(!task.getResult().isEmpty()){
-                        for(QueryDocumentSnapshot document : task.getResult()){
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        String nombreProducto = document.getString("Nombre");
+                        if (nombreProducto != null && nombreProducto.replaceAll("\\s", "").toLowerCase().contains(nombreMinusculas)) {
                             String ean = document.getId();
-                            String nombre = document.getString("Nombre");
                             String fichaTecnica = document.getString("FichaTecnica");
                             String marca = document.getString("Marca");
                             double precio = document.getDouble("Precio");
@@ -81,44 +78,41 @@ public class EliminarModificar extends AppCompatActivity {
                             int unidades = Double.valueOf(unidadesDouble).intValue();
                             String entradaMercancia = document.getString("entradaMercancia");
 
-                            Productos producto = new Productos(ean,nombre,fichaTecnica,marca,precio,unidades,entradaMercancia);
+                            Productos producto = new Productos(ean, nombreProducto, fichaTecnica, marca, precio, unidades, entradaMercancia);
                             productos.add(producto);
                         }
-                    }else{
+                    }
+
+                    if (productos.isEmpty()) {
                         Toast.makeText(EliminarModificar.this, "No se han encontrado resultados", Toast.LENGTH_SHORT).show();
                     }
+
                     productoAdapter = new ProductosAdapter(productos);
                     productoAdapter.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            String ean = productos.get(recyclerView.getChildAdapterPosition(v)).getEan();
-                            String nombre = productos.get(recyclerView.getChildAdapterPosition(v)).getNombre();
-                            String fichaTecnica = productos.get(recyclerView.getChildAdapterPosition(v)).getFichaTecnica();
-                            String marca = productos.get(recyclerView.getChildAdapterPosition(v)).getMarca();
-                            String entradaMercancia = productos.get(recyclerView.getChildAdapterPosition(v)).getEntradaMercancia();
-                            double precio = productos.get(recyclerView.getChildAdapterPosition(v)).getPrecio();
-                            int unidades = productos.get(recyclerView.getChildAdapterPosition(v)).getUnidades();
+                            int position = recyclerView.getChildAdapterPosition(v);
+                            Productos producto = productos.get(position);
                             Intent intent = new Intent(EliminarModificar.this, detallesEliminarModificar.class);
-                            intent.putExtra("ean", ean);
-                            intent.putExtra("nombre", nombre);
-                            intent.putExtra("fichaTecnica", fichaTecnica);
-                            intent.putExtra("marca", marca);
-                            intent.putExtra("precio", precio);
-                            intent.putExtra("unidades", unidades);
-                            intent.putExtra("entradaMercancia", entradaMercancia);
+                            intent.putExtra("ean", producto.getEan());
+                            intent.putExtra("nombre", producto.getNombre());
+                            intent.putExtra("fichaTecnica", producto.getFichaTecnica());
+                            intent.putExtra("marca", producto.getMarca());
+                            intent.putExtra("precio", producto.getPrecio());
+                            intent.putExtra("unidades", producto.getUnidades());
+                            intent.putExtra("entradaMercancia", producto.getEntradaMercancia());
                             startActivity(intent);
                         }
                     });
                     recyclerView.setAdapter(productoAdapter);
-                }else {
+                } else {
                     System.out.println("Fallo la conexion");
                 }
             }
         });
-
     }
 
-    public void volver(){
+    public void volver() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
