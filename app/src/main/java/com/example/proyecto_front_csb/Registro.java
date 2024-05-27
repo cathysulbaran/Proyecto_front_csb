@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Registro extends AppCompatActivity {
 
@@ -67,6 +69,7 @@ public class Registro extends AppCompatActivity {
         String email = edt_username.getText().toString();
         String password = edt_contrasena.getText().toString();
         String correo = edt_correo.getText().toString();
+        String valorSpinner = spPrivilegios.getSelectedItem().toString();
 
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(correo)) {
             // Message if fields are empty
@@ -75,16 +78,24 @@ public class Registro extends AppCompatActivity {
             // Message if password is less than 6 characters
             Toast.makeText(Registro.this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show();
         } else {
+            FirebaseAuth registro = FirebaseAuth.getInstance();
             // Create user with FirebaseAuth
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(edt_correo.getText().toString(), edt_contrasena.getText().toString())
+            registro.createUserWithEmailAndPassword(edt_correo.getText().toString(), edt_contrasena.getText().toString())
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Success message
-                                Toast.makeText(Registro.this, "Cuenta creada correctamente.", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(Registro.this, Login.class);
-                                startActivity(intent);
+                                FirebaseUser user = registro.getCurrentUser();
+                                if(user!=null){
+                                    String idUsuario = user.getUid();
+                                    //FirebaseFirestore.getInstance().collection("Usuarios").document(user.getUid())
+                                    Toast.makeText(Registro.this, "Cuenta creada correctamente.", Toast.LENGTH_SHORT).show();
+
+                                }else{
+                                    Toast.makeText(Registro.this, "Error al crear la cuenta de usuario.", Toast.LENGTH_SHORT).show();
+                                }
+
                             } else {
                                 // Error message for account creation failure
                                 Toast.makeText(Registro.this, "La cuenta no se ha podido crear correctamente.", Toast.LENGTH_SHORT).show();

@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
             btIniciarRegistro.setEnabled(false);
             btRegistrarUsuarios.setVisibility(View.INVISIBLE);
             btRegistrarUsuarios.setEnabled(false);
+            btEliminarModificar.setVisibility(View.INVISIBLE);
+            btEliminarModificar.setEnabled(false);
         }
         btIniciarRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
