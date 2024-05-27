@@ -19,7 +19,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Registro extends AppCompatActivity {
 
@@ -70,6 +74,12 @@ public class Registro extends AppCompatActivity {
         String password = edt_contrasena.getText().toString();
         String correo = edt_correo.getText().toString();
         String valorSpinner = spPrivilegios.getSelectedItem().toString();
+        boolean esAdmin = false;
+        if(valorSpinner.equals("Administrador")){
+            esAdmin=true;
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("esAdmin",esAdmin);
 
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(correo)) {
             // Message if fields are empty
@@ -89,7 +99,7 @@ public class Registro extends AppCompatActivity {
                                 FirebaseUser user = registro.getCurrentUser();
                                 if(user!=null){
                                     String idUsuario = user.getUid();
-                                    //FirebaseFirestore.getInstance().collection("Usuarios").document(user.getUid())
+                                    FirebaseFirestore.getInstance().collection("Usuarios").document(user.getUid()).set(map);
                                     Toast.makeText(Registro.this, "Cuenta creada correctamente.", Toast.LENGTH_SHORT).show();
 
                                 }else{
