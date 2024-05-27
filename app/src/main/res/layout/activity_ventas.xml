@@ -20,18 +20,19 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/ic_back"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="80dp"
             />
 
         <TextView
             android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="26dp"
+            android:textSize="25dp"
             android:textStyle="italic|bold"
-            android:text="Consulta Articulo"
+            android:text="Ventas"
             android:textColor="@color/color_claro"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="130dp"
+
             />
 
         <ImageView

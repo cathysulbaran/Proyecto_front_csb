@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:textSize="26dp"
             android:textStyle="italic|bold"
-            android:text="Consulta Articulo"
+            android:text="Modificar/Eliminar"
             android:textColor="@color/color_claro"
             />
 
