@@ -31,8 +31,13 @@ public class Adaptador_ventas extends RecyclerView.Adapter<Adaptador_ventas.Prod
     private List<Productos> productosSeleccionados = new ArrayList<>();
     private View.OnClickListener listener;
 
+    private ListenerModificarCantidad listenerModificarCantidad;
+
     private Context context;
 
+    public interface ListenerModificarCantidad {
+        void modificarCantidad();
+    }
 
     @Override
     public void onClick(View v) {
@@ -40,11 +45,11 @@ public class Adaptador_ventas extends RecyclerView.Adapter<Adaptador_ventas.Prod
             listener.onClick(v);
         }
     }
-
-    public Adaptador_ventas(List<Productos> productos, Context context) {
+    public Adaptador_ventas(List<Productos> productos, Context context, ListenerModificarCantidad listenerModificarCantidad) {
         this.productos = productos;
         this.productosSeleccionados = new ArrayList<>();
         this.context = context;
+        this.listenerModificarCantidad = listenerModificarCantidad;
     }
 
     public List<Productos> getProductosSeleccionados() {
@@ -73,6 +78,7 @@ public class Adaptador_ventas extends RecyclerView.Adapter<Adaptador_ventas.Prod
             public void onClick(View v) {
                 producto.setUnidades(producto.getUnidades()+1);
                 holder.cantidad.setText(Integer.toString(producto.getUnidades()));
+                listenerModificarCantidad.modificarCantidad();
 
             }
         });
@@ -103,6 +109,7 @@ public class Adaptador_ventas extends RecyclerView.Adapter<Adaptador_ventas.Prod
                     builder.create().show();
 
                 }
+                listenerModificarCantidad.modificarCantidad();
                 holder.cantidad.setText(Integer.toString(producto.getUnidades()));
             }
         });

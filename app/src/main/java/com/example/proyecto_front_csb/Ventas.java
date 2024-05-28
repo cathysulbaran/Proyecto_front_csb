@@ -40,7 +40,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Ventas extends AppCompatActivity {
+public class Ventas extends AppCompatActivity implements Adaptador_ventas.ListenerModificarCantidad{
 
     private EditText ean;
     private ImageView volver, verCarrito, buscar, btEAN;
@@ -80,7 +80,7 @@ public class Ventas extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent.hasExtra("productosSeleccionados")){
             productosSeleccionados = (ArrayList<Productos>) getIntent().getSerializableExtra("productosSeleccionados");
-            Adaptador_ventas = new Adaptador_ventas(productosSeleccionados, Ventas.this);
+            Adaptador_ventas = new Adaptador_ventas(productosSeleccionados, Ventas.this, this);
             recyclerView.setAdapter(Adaptador_ventas);
         }
 
@@ -164,7 +164,7 @@ public class Ventas extends AppCompatActivity {
                                             }
                                         }
                                     }
-                                    Adaptador_ventas = new Adaptador_ventas(productosSeleccionados, Ventas.this);
+                                    Adaptador_ventas = new Adaptador_ventas(productosSeleccionados, Ventas.this, Ventas.this);
                                     recyclerView.setAdapter(Adaptador_ventas);
 
 
@@ -200,6 +200,11 @@ public class Ventas extends AppCompatActivity {
     public void volver() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void modificarCantidad() {
+
     }
 }
 

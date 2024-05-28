@@ -56,7 +56,7 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 
-public class CarritoActivity extends AppCompatActivity {
+public class CarritoActivity extends AppCompatActivity implements Adaptador_ventas.ListenerModificarCantidad {
 
     private Context context;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -95,7 +95,7 @@ public class CarritoActivity extends AppCompatActivity {
         productosSeleccionados = (ArrayList<Productos>) getIntent().getSerializableExtra("productosSeleccionados");
 
         // Configurar el adaptador para el RecyclerView
-        Adaptador_ventas = new Adaptador_ventas(productosSeleccionados, CarritoActivity.this);
+        Adaptador_ventas = new Adaptador_ventas(productosSeleccionados, CarritoActivity.this, this);
         recyclerViewProductos.setAdapter(Adaptador_ventas);
 
         // Mostrar el resumen de los productos seleccionados
@@ -103,6 +103,8 @@ public class CarritoActivity extends AppCompatActivity {
 
         // Supongamos que tienes un botón para confirmar la compra
         btConfirmarCompra = findViewById(R.id.btGenerarCompra);
+
+
         btConfirmarCompra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -264,6 +266,8 @@ public class CarritoActivity extends AppCompatActivity {
 
             // Mostrar un mensaje de éxito
             Toast.makeText(context, "Informe generado correctamente en: " + file.getParentFile(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, Ventas.class);
+            startActivity(intent);
         } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(context, "Error al guardar el informe de productos", Toast.LENGTH_SHORT).show();
@@ -305,5 +309,11 @@ public class CarritoActivity extends AppCompatActivity {
             intent.putExtra("productosSeleccionados", productosSeleccionados);
         }
         startActivity(intent);
+    }
+
+    @Override
+    public void modificarCantidad() {
+
+        txtResumen.setText( "Total: "+calcularTotal(productosSeleccionados)+"€");
     }
 }
