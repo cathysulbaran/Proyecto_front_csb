@@ -77,6 +77,12 @@ public class Ventas extends AppCompatActivity {
         });
 
         productosSeleccionados = new ArrayList<>(); // Inicializar la lista de productos seleccionados
+        Intent intent = getIntent();
+        if(intent.hasExtra("productosSeleccionados")){
+            productosSeleccionados = (ArrayList<Productos>) getIntent().getSerializableExtra("productosSeleccionados");
+            Adaptador_ventas = new Adaptador_ventas(productosSeleccionados, Ventas.this);
+            recyclerView.setAdapter(Adaptador_ventas);
+        }
 
         buscar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +164,7 @@ public class Ventas extends AppCompatActivity {
                                             }
                                         }
                                     }
-                                    Adaptador_ventas = new Adaptador_ventas(productosSeleccionados);
+                                    Adaptador_ventas = new Adaptador_ventas(productosSeleccionados, Ventas.this);
                                     recyclerView.setAdapter(Adaptador_ventas);
 
 

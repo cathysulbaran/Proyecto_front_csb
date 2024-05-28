@@ -95,7 +95,7 @@ public class CarritoActivity extends AppCompatActivity {
         productosSeleccionados = (ArrayList<Productos>) getIntent().getSerializableExtra("productosSeleccionados");
 
         // Configurar el adaptador para el RecyclerView
-        Adaptador_ventas = new Adaptador_ventas(productosSeleccionados);
+        Adaptador_ventas = new Adaptador_ventas(productosSeleccionados, CarritoActivity.this);
         recyclerViewProductos.setAdapter(Adaptador_ventas);
 
         // Mostrar el resumen de los productos seleccionados
@@ -121,6 +121,16 @@ public class CarritoActivity extends AppCompatActivity {
 
         btAtras.setOnClickListener(v -> volver());
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, Ventas.class);
+            if(!productosSeleccionados.isEmpty()){
+                intent.putExtra("productosSeleccionados", productosSeleccionados);
+            }
+            startActivity(intent);
+        super.onBackPressed();
     }
 
     public void generar(){
@@ -291,6 +301,9 @@ public class CarritoActivity extends AppCompatActivity {
 
     public void volver() {
         Intent intent = new Intent(this, Ventas.class);
+        if(!productosSeleccionados.isEmpty()){
+            intent.putExtra("productosSeleccionados", productosSeleccionados);
+        }
         startActivity(intent);
     }
 }

@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +31,8 @@ public class Adaptador_ventas extends RecyclerView.Adapter<Adaptador_ventas.Prod
     private List<Productos> productosSeleccionados = new ArrayList<>();
     private View.OnClickListener listener;
 
+    private Context context;
+
 
     @Override
     public void onClick(View v) {
@@ -36,9 +41,10 @@ public class Adaptador_ventas extends RecyclerView.Adapter<Adaptador_ventas.Prod
         }
     }
 
-    public Adaptador_ventas(List<Productos> productos) {
+    public Adaptador_ventas(List<Productos> productos, Context context) {
         this.productos = productos;
         this.productosSeleccionados = new ArrayList<>();
+        this.context = context;
     }
 
     public List<Productos> getProductosSeleccionados() {
@@ -73,7 +79,30 @@ public class Adaptador_ventas extends RecyclerView.Adapter<Adaptador_ventas.Prod
         holder.restar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //new AlertDialog.Builder(context).setTitle()
                 producto.setUnidades(producto.getUnidades()-1);
+                if(producto.getUnidades() == 0){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            builder.setTitle("Eliminar productos")
+                            .setMessage("¿Estas seguro que deseas eliminar el producto?")
+                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    productos.remove(position);
+                                    notifyItemRemoved(position);
+                                    notifyItemRangeChanged(position, productos.size());
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    producto.setUnidades(1);
+                                    holder.cantidad.setText(unidades);
+                                }
+                            });
+                    builder.create().show();
+
+                }
                 holder.cantidad.setText(Integer.toString(producto.getUnidades()));
             }
         });
