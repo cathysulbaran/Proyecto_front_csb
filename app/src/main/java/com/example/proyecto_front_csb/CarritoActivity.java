@@ -182,10 +182,10 @@ public class CarritoActivity extends AppCompatActivity implements Adaptador_vent
             imagenEncabezado.setHorizontalAlignment(HorizontalAlignment.CENTER);
             pdfDocument.add(imagenEncabezado);
 
-            pdfDocument.add(new Paragraph("INVETORYGENIE").setBold().setFontSize(18).setTextAlignment(TextAlignment.CENTER));
+            pdfDocument.add(new Paragraph("INVENTORYGENIE").setBold().setFontSize(18).setTextAlignment(TextAlignment.CENTER));
             pdfDocument.add(new Paragraph("Dirección: Calle Principal, Ciudad, País").setFontSize(12).setTextAlignment(TextAlignment.CENTER));
             pdfDocument.add(new Paragraph("Teléfono: +123456789").setFontSize(12).setTextAlignment(TextAlignment.CENTER));
-            pdfDocument.add(new Paragraph("Correo electrónico: invetorygenie@empresa.com").setFontSize(12).setTextAlignment(TextAlignment.CENTER));
+            pdfDocument.add(new Paragraph("Correo electrónico: inventorygenie@empresa.com").setFontSize(12).setTextAlignment(TextAlignment.CENTER));
             pdfDocument.add(new Paragraph("\n")); // Espacio entre el encabezado y el contenido principal
 
             float[] columnWidths = {100f, 200f, 100f, 100f};
@@ -211,13 +211,19 @@ public class CarritoActivity extends AppCompatActivity implements Adaptador_vent
 
             pdfDocument.add(new Paragraph("\n"));
             Paragraph informacionPago = new Paragraph();
+            //Cliente
+            informacionPago.add("Datos del cliente: ").setBold().add("\n");
+            informacionPago.add("Nombre y Apellido: " + usuarioTexto + "\n");
+            informacionPago.add("Telefono: " + telefonoTexto + "\n");
+            informacionPago.add("Dirección: " + direccionTexto + "\n");
+            //Factura
             informacionPago.add("Información de pago:").setBold().add("\n");
             informacionPago.add("Método de pago: Tarjeta de crédito").add("\n");
             informacionPago.add("Número de tarjeta: **** **** **** 1234").add("\n");
             informacionPago.add("Fecha de pago: 01/01/2023");
             pdfDocument.add(informacionPago);
 
-            pdfDocument.add(new Paragraph("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"));
+            pdfDocument.add(new Paragraph("\n"));
 
             Paragraph totalAntesIVA = new Paragraph();
             totalAntesIVA.add("Total antes de IVA: €" + total).setTextAlignment(TextAlignment.RIGHT);
