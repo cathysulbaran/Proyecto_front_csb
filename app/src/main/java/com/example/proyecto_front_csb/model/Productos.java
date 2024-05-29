@@ -63,7 +63,6 @@ public class Productos implements Serializable {
     }
 
     public Productos() {
-        // Aquí puedes inicializar valores predeterminados si es necesario
     }
     public String getEan() {
         return EAN;

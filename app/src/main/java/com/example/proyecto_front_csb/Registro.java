@@ -82,14 +82,11 @@ public class Registro extends AppCompatActivity {
         map.put("esAdmin",esAdmin);
 
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(correo)) {
-            // Message if fields are empty
             Toast.makeText(Registro.this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
         } else if (password.length() < 6) {
-            // Message if password is less than 6 characters
             Toast.makeText(Registro.this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show();
         } else {
             FirebaseAuth registro = FirebaseAuth.getInstance();
-            // Create user with FirebaseAuth
             registro.createUserWithEmailAndPassword(edt_correo.getText().toString(), edt_contrasena.getText().toString())
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -109,7 +106,6 @@ public class Registro extends AppCompatActivity {
                                 }
 
                             } else {
-                                // Error message for account creation failure
                                 Toast.makeText(Registro.this, "La cuenta no se ha podido crear correctamente.", Toast.LENGTH_SHORT).show();
                             }
                         }

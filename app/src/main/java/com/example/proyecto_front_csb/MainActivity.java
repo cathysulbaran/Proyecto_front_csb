@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_grid);
 
+
+
         btEliminarModificar = findViewById(R.id.btEliminarModificar);
         btIniciarRegistro = findViewById(R.id.btRegistro);
         btIniciarConsulta = findViewById(R.id.btConsultaArticulo);
@@ -63,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, callback);
 
 
-        //Variable de sesion establecida para que no se borre hasta que pulsemos cerrar sesion
         SharedPreferences sharedPreferences = getSharedPreferences("usuario", Context.MODE_PRIVATE);
         boolean esAdmin = sharedPreferences.getBoolean("esAdmin", false);
 
@@ -159,4 +160,6 @@ public class MainActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
+
 }

@@ -55,7 +55,6 @@ public class Login extends AppCompatActivity {
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                // Si el usuario cancela, cierra el diálogo
                                 dialog.dismiss();
                             }
                         })

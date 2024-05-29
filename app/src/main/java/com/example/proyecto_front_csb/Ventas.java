@@ -49,7 +49,7 @@ public class Ventas extends AppCompatActivity implements Adaptador_ventas.Listen
     ActivityVentasBinding binding;
 
     private BarcodeScannerHelper barcodeScannerHelper;
-    private ArrayList<Productos> productosSeleccionados; // Lista para almacenar productos seleccionados
+    private ArrayList<Productos> productosSeleccionados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,7 @@ public class Ventas extends AppCompatActivity implements Adaptador_ventas.Listen
         ean = findViewById(R.id.edtEAN);
         buscar = findViewById(R.id.btBuscar);
         volver = findViewById(R.id.btVolver);
-        verCarrito = findViewById(R.id.btVerCarrito); // Inicializar el botón para ver el carrito
+        verCarrito = findViewById(R.id.btVerCarrito);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         btEAN = findViewById(R.id.btEAN);
@@ -76,7 +76,7 @@ public class Ventas extends AppCompatActivity implements Adaptador_ventas.Listen
             }
         });
 
-        productosSeleccionados = new ArrayList<>(); // Inicializar la lista de productos seleccionados
+        productosSeleccionados = new ArrayList<>();
         Intent intent = getIntent();
         if(intent.hasExtra("productosSeleccionados")){
             productosSeleccionados = (ArrayList<Productos>) getIntent().getSerializableExtra("productosSeleccionados");
@@ -177,7 +177,7 @@ public class Ventas extends AppCompatActivity implements Adaptador_ventas.Listen
                                     dialog.dismiss();
                                 }
                             });
-                            //Mostramos el dialog en pantalla
+
                             builder.create().show();
 
                         }else{

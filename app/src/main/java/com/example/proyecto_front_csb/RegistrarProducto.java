@@ -60,7 +60,6 @@ public class RegistrarProducto extends AppCompatActivity {
         findViewById(R.id.btCodigoBarras).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Iniciar el escaneo de código de barras
                 barcodeScannerHelper.startScanner();
             }
         });
@@ -69,11 +68,9 @@ public class RegistrarProducto extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        // Manejar el resultado del escaneo
         barcodeScannerHelper.handleScanResult(data, new BarcodeScannerHelper.OnScanResultListener() {
             @Override
             public void onScanResult(String contents) {
-                // Actualizar el campo edt_ean con el valor del código de barras escaneado
                 edt_ean.setText(contents);
             }
         });
@@ -88,7 +85,6 @@ public class RegistrarProducto extends AppCompatActivity {
         String unidadesStr = edt_stockDisp.getText().toString();
         String entradaMercancia = edt_fecha.getText().toString();
 
-        // Verificar si algún campo está vacío
 
         if (ean.isEmpty() || nombre.isEmpty() || marca.isEmpty() ||
                 fichaTecnica.isEmpty() || precioStr.isEmpty() ||
@@ -100,31 +96,26 @@ public class RegistrarProducto extends AppCompatActivity {
         Double precio = Double.valueOf(precioStr);
         Integer unidades = Integer.valueOf(unidadesStr);
 
-        // 13 caracteres ean
         if (ean.length() != 13) {
             Toast.makeText(RegistrarProducto.this, "El EAN debe tener exactamente 13 caracteres", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Verificar si la fecha tiene un formato válido
         if (!entradaMercancia.matches("\\d{2}/\\d{2}/\\d{4}")) {
             Toast.makeText(RegistrarProducto.this, "Formato de fecha incorrecto. Utilice el formato dd/MM/yyyy", Toast.LENGTH_SHORT).show();
             return;
         }
 
-            // Extraer el día, mes y año de la fecha
         String[] partesFecha = entradaMercancia.split("/");
         int dia = Integer.parseInt(partesFecha[0]);
         int mes = Integer.parseInt(partesFecha[1]);
         int anio = Integer.parseInt(partesFecha[2]);
 
-            // para comprobar que no pones meses que no existen
         if (mes < 1 || mes > 12) {
             Toast.makeText(RegistrarProducto.this, "El mes ingresado no es válido", Toast.LENGTH_SHORT).show();
             return;
         }
 
-            // Verificar si el día es válido para el mes ingresado
         int diasEnMes = obtenerDiasEnMes(mes, anio);
         if (dia < 1 || dia > diasEnMes) {
             Toast.makeText(RegistrarProducto.this, "El día ingresado no es válido para el mes seleccionado", Toast.LENGTH_SHORT).show();
@@ -133,7 +124,6 @@ public class RegistrarProducto extends AppCompatActivity {
 
 
 
-        // Crear un objeto Producto con los datos obtenidos
         Productos producto = new Productos(ean, nombre, fichaTecnica, marca, precio, unidades, entradaMercancia);
         DataBase db = new DataBase();
         db.insertarProductos(this, producto);

@@ -52,20 +52,16 @@ public class InformeProductos {
 
                         producto.setEan(document.getId());
 
-                        // Asignar otros campos del producto
                         producto.setNombre(document.getString("Nombre"));
                         producto.setMarca(document.getString("Marca"));
-                        // Convertir el valor de tipo String a int y asignarlo a unidades
                         int unidades = document.getLong("Unidades").intValue();
                         producto.setUnidades(unidades);
                         producto.setEntradaMercancia(document.getString("entradaMercancia"));
                         producto.setFichaTecnica(document.getString("FichaTecnica"));
                         producto.setPrecio(document.getDouble("Precio"));
 
-                        // Agregar el producto a la lista
                         productosList.add(producto);
                     }
-                    // Generar un informe PDF con los detalles de todos los productos
                     generarInformePDF(productosList);
                 } else {
                     Log.e(TAG, "Error al obtener productos", task.getException());
@@ -77,29 +73,24 @@ public class InformeProductos {
 
 
     public void generarInformePDF(List<Productos> productosList) {
-        // Especifica la ruta de guardado del archivo PDF
         String fileName = "Stock.pdf";
         File directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
         File file = new File(directory, fileName);
 
         try {
-            // Crear el documento PDF en memoria
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             PdfWriter writer = new PdfWriter(file);
             PdfDocument pdf = new PdfDocument(writer);
             pdf.setDefaultPageSize(PageSize.A4.rotate());
             Document pdfDocument = new Document(pdf);
 
-            // Agregar encabezado con el nombre de la empresa
             pdfDocument.add(new Paragraph("Informe de Stock").setBold().setFontSize(18).setTextAlignment(TextAlignment.CENTER));
             pdfDocument.add(new Paragraph("\n\n")); // Espacio después del encabezado
 
-            // Agregar tabla con los detalles de cada producto
             float[] columnWidths = {100f, 200f, 20f, 80f, 100f, 20f, 200f};
             Table table = new Table(columnWidths);
             table.setHorizontalAlignment(HorizontalAlignment.CENTER);
 
-            // Agregar encabezados de la tabla
             table.addCell(new Cell().add(new Paragraph("EAN").setBold()));
             table.addCell(new Cell().add(new Paragraph("Nombre").setBold()));
             table.addCell(new Cell().add(new Paragraph("Unidades").setBold()));
@@ -108,10 +99,8 @@ public class InformeProductos {
             table.addCell(new Cell().add(new Paragraph("Precio").setBold()));
             table.addCell(new Cell().add(new Paragraph("Ficha técnica").setBold()));
 
-            // Agregar los detalles de cada producto a la tabla
-            // Agregar los detalles de cada producto a la tabla
+
             for (Productos producto : productosList) {
-                // Verifica si el EAN es nulo o no válido
                 String ean = producto.getEan();
                 if (ean != null && !ean.isEmpty()) {
                     table.addCell(new Cell().add(new Paragraph(ean)));
@@ -119,7 +108,6 @@ public class InformeProductos {
                     table.addCell(new Cell().add(new Paragraph("EAN no disponible")));
                 }
 
-                // Verifica si el nombre es nulo o no válido
                 String nombre = producto.getNombre();
                 if (nombre != null && !nombre.isEmpty()) {
                     table.addCell(new Cell().add(new Paragraph(nombre)));
@@ -128,7 +116,6 @@ public class InformeProductos {
                 }
                 int unidades = producto.getUnidades();
                 table.addCell(new Cell().add(new Paragraph(String.valueOf(unidades))));
-                // Verifica si la fecha de entrada es nula o no válida
                 String entradaMercancia = producto.getEntradaMercancia();
                 if (entradaMercancia != null && !entradaMercancia.isEmpty()) {
                     table.addCell(new Cell().add(new Paragraph(entradaMercancia)));
@@ -136,7 +123,6 @@ public class InformeProductos {
                     table.addCell(new Cell().add(new Paragraph("Fecha de entrada no disponible")));
                 }
 
-                // Verifica si la marca es nula o no válida
                 String marca = producto.getMarca();
                 if (marca != null && !marca.isEmpty()) {
                     table.addCell(new Cell().add(new Paragraph(marca)));
@@ -144,7 +130,6 @@ public class InformeProductos {
                     table.addCell(new Cell().add(new Paragraph("Marca no disponible")));
                 }
 
-                // Verifica si el precio es nulo o no válido
                 Double precio = producto.getPrecio();
                 if (precio != null) {
                     table.addCell(new Cell().add(new Paragraph(String.valueOf(precio))));
@@ -152,7 +137,6 @@ public class InformeProductos {
                     table.addCell(new Cell().add(new Paragraph("Precio no disponible")));
                 }
 
-                // Verifica si la ficha técnica es nula o no válida
                 String fichaTecnica = producto.getFichaTecnica();
                 if (fichaTecnica != null && !fichaTecnica.isEmpty()) {
                     table.addCell(new Cell().add(new Paragraph(fichaTecnica)));
@@ -163,13 +147,10 @@ public class InformeProductos {
 
 
 
-            // Agregar la tabla al documento
             pdfDocument.add(table);
 
-            // Cerrar el documento
             pdfDocument.close();
 
-            // Mostrar un mensaje de éxito
             Toast.makeText(context, "Informe generado correctamente en: " + file.getParentFile(), Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();

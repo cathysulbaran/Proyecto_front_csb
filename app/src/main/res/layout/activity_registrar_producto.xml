@@ -190,15 +190,16 @@
         android:textColor="@color/color_claro"
         android:textSize="15dp" />
 
-    <EditText
-        android:id="@+id/edtFecha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:textColor="@color/color_claro"
-        android:inputType="date"
-        android:padding="8dp"
-        android:background="@drawable/rounded_corner" />
+        <EditText
+            android:id="@+id/edtFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint='Ej: "24/05/2024"'
+            android:inputType="date"
+            android:padding="8dp"
+            android:textColor="@color/color_claro" />
 
     </LinearLayout>
 
