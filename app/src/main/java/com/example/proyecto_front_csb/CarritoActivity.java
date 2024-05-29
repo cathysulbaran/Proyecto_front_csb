@@ -276,7 +276,7 @@ public class CarritoActivity extends AppCompatActivity implements Adaptador_vent
 
         resumen.append("Total: ").append(total);
 
-        txtResumen.setText(resumen.toString());
+        txtResumen.setText(resumen.toString()+"€");
     }
 
 

@@ -1,30 +1,24 @@
 package com.example.proyecto_front_csb;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.proyecto_front_csb.model.Productos;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Adaptador_ventas extends RecyclerView.Adapter<Adaptador_ventas.ProductoViewHolder> implements View.OnClickListener {
     private List<Productos> productos;
@@ -152,6 +146,38 @@ public class Adaptador_ventas extends RecyclerView.Adapter<Adaptador_ventas.Prod
             sumar = itemView.findViewById(R.id.btSumar);
             restar = itemView.findViewById(R.id.btRestar);
             cantidad = itemView.findViewById(R.id.textCantidadValor);
+
+
+        }
+    }
+
+    public static class Adaptador_Spinner extends ArrayAdapter<String> {
+
+        LayoutInflater layoutInflater;
+        public Adaptador_Spinner(@NonNull Context context, int resource, List<String> lista) {
+            super(context, resource, lista);
+            layoutInflater = LayoutInflater.from(context);
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            View vista = layoutInflater.inflate(R.layout.spinner_adaptador,null, true);
+            String opcion = getItem(position);
+            TextView tvValorAdmin = (TextView) vista.findViewById(R.id.valorAdmin);
+            tvValorAdmin.setText(opcion);
+            return vista;
+        }
+
+        @Override
+        public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            if(convertView == null){
+                convertView = layoutInflater.inflate(R.layout.spinner_adaptador, parent, false);
+            }
+            String opcion = getItem(position);
+            TextView tvValorAdmin = (TextView) convertView.findViewById(R.id.valorAdmin);
+            tvValorAdmin.setText(opcion);
+            return convertView;
 
 
         }

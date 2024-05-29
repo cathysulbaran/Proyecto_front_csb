@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,10 +18,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Registro extends AppCompatActivity {
@@ -49,8 +49,11 @@ public class Registro extends AppCompatActivity {
         bt_atras = findViewById(R.id.btAtras);
         spPrivilegios = findViewById(R.id.spPrivilegios);
 
-        String[] datosSpinner = new String[]{"Administrador", "Estandard"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datosSpinner);
+        List<String> datosSpinner = new ArrayList<>();
+        datosSpinner.add("Administrador");
+        datosSpinner.add("Estandar");
+
+        Adaptador_ventas.Adaptador_Spinner adapter = new Adaptador_ventas.Adaptador_Spinner(this,R.layout.spinner_adaptador,datosSpinner);
         spPrivilegios.setAdapter(adapter);
 
         bt_crear.setOnClickListener(new View.OnClickListener() {
